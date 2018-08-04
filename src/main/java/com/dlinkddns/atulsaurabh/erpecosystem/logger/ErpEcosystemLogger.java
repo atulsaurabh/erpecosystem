@@ -27,8 +27,25 @@ public class ErpEcosystemLogger implements Logger
    @Value("${erp.log.directory}")
    private String log_directory_name;
    
-   @Value("${erp.log.baselogfilename}")
-   private String log_file_name;
+   @Value("${erp.log.fatallogfilename}")
+   private String fatal_log_file_name;
+   
+   @Value("${erp.log.debuflogfilename}")
+   private String debug_log_file_name;
+   
+   @Value("${erp.log.infologfilename}")
+   private String info_log_file_name;
+   
+   @Value("${erp.log.errorlogfilename}")
+   private String error_log_file_name;
+   
+   @Value("${erp.log.warnlogfilename}")
+   private String warn_log_file_name;
+   
+   @Value("${erp.log.alllogfilename}")
+   private String all_log_file_name;
+   
+   
    
    private String conversionPattern;
    
@@ -127,8 +144,21 @@ public class ErpEcosystemLogger implements Logger
       if(rollingOn)
       {
           try {
+              String fileName="default.log";
+              if(level == Level.ALL)
+                  fileName = all_log_file_name;
+              else if(level == Level.DEBUG)
+                  fileName = debug_log_file_name;
+              else if(level == Level.ERROR)
+                  fileName = error_log_file_name;
+              else if(level == Level.FATAL)
+                  fileName = fatal_log_file_name;
+              else if(level == Level.INFO)
+                  fileName = info_log_file_name;
+              else if(level == Level.WARN)
+                  fileName = warn_log_file_name;
               
-              logger.addAppender(getRollingFileAdapter());
+              logger.addAppender(getRollingFileAdapter(fileName));
           } catch (URISyntaxException e) {
              java.util.logging.Logger.getLogger(this.getClass().getName()).log(java.util.logging.Level.SEVERE, 
                      "URL Is Not Valid For Log File\nUnable To Create Daily LOG FILE");
@@ -141,14 +171,15 @@ public class ErpEcosystemLogger implements Logger
    /**
     * @see org.apache.log4j.DailyRollingFileAppender
     * @return DailyRollingFileAppender. This class is used for creating date wise log.
-    * @throws URISyntaxException throws exception if the URI for log directory is not valid 
+    * @throws URISyntaxException throws exception if the URI for log directory is not valid
+    * @param fileName File name where the log will be recorded.
     */
-  private DailyRollingFileAppender getRollingFileAdapter() throws URISyntaxException
+  private DailyRollingFileAppender getRollingFileAdapter(String fileName) throws URISyntaxException
   {
       URI logDIRFullName = this.getClass().getResource("/").toURI();
       String normalizePath = Paths.get(logDIRFullName).toString();
 
-      String log_file_full_name = normalizePath + "/" + log_directory_name + "/" + log_file_name;
+      String log_file_full_name = normalizePath + "/" + log_directory_name + "/" + fileName;
       PatternLayout layout = new PatternLayout();
       String conversionPattern = getConversionPattern();
       layout.setConversionPattern(conversionPattern);
@@ -171,8 +202,76 @@ public class ErpEcosystemLogger implements Logger
     public void setConversionPattern(String conversionPattern) {
         this.conversionPattern = conversionPattern;
     }
-    
-    
-  
-  
+
+    @Override
+    public void logWarning(String message) {
+        org.apache.log4j.Logger logger = log(null, Level.WARN);
+        logger.warn(message);
+    }
+
+    @Override
+    public void logWarning(Class warningClass, String message) {
+      org.apache.log4j.Logger logger = log(warningClass, Level.WARN);
+        logger.warn(message);  
+    }
+
+    @Override
+    public void logWarning(Class warningClass, String message, Throwable throwable) {
+       org.apache.log4j.Logger logger = log(warningClass, Level.WARN);
+       logger.warn(message,throwable); 
+    }
+
+    @Override
+    public void logInfo(String message) {
+      org.apache.log4j.Logger logger = log(null, Level.INFO);
+       logger.info(message);   
+    }
+
+    @Override
+    public void logInfo(Class infoClass, String message) {
+     org.apache.log4j.Logger logger = log(infoClass, Level.INFO);
+     logger.info(message);   
+    }
+
+    @Override
+    public void logInfo(Class infoClass, String message, Throwable throwable) {
+     org.apache.log4j.Logger logger = log(infoClass, Level.INFO);
+     logger.info(message,throwable);    
+    }
+
+    @Override
+    public void logDebug(String message) {
+     org.apache.log4j.Logger logger = log(null, Level.DEBUG);
+     logger.debug(message);    
+    }
+
+    @Override
+    public void logDebug(Class debugClass, String message) {
+        org.apache.log4j.Logger logger = log(debugClass, Level.DEBUG);
+        logger.debug(message);
+    }
+
+    @Override
+    public void logDebug(Class debugClass, String message, Throwable throwable) {
+        org.apache.log4j.Logger logger = log(debugClass, Level.DEBUG);
+        logger.debug(message,throwable);
+    }
+
+    @Override
+    public void logError(String message) {
+     org.apache.log4j.Logger logger = log(null, Level.ERROR);
+        logger.error(message);   
+    }
+
+    @Override
+    public void logError(Class errorClass, String message) {
+        org.apache.log4j.Logger logger = log(errorClass, Level.ERROR);
+        logger.debug(message);
+    }
+
+    @Override
+    public void logError(Class errorClass, String message, Throwable throwable) {
+      org.apache.log4j.Logger logger = log(errorClass, Level.ERROR);
+        logger.debug(message,throwable);  
+    }
 }

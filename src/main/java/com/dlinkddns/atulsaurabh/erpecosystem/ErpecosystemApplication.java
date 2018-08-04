@@ -1,16 +1,22 @@
 package com.dlinkddns.atulsaurabh.erpecosystem;
 
+import com.dlinkddns.atulsaurabh.erpecosystem.logger.Logger;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 @SpringBootApplication
+@EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
 public class ErpecosystemApplication extends Application implements ApplicationRunner{
 
     private Stage primaryStage;
+
     public static void main(String[] args) {
         SpringApplication.run(ErpecosystemApplication.class, args);
     }
@@ -53,8 +59,7 @@ public class ErpecosystemApplication extends Application implements ApplicationR
       
       /*
          Startting the primary stage or window to interact the with the user.
-      */
-      
+      */   
     }
     
     
