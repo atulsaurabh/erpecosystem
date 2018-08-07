@@ -17,9 +17,67 @@ import org.apache.log4j.PatternLayout;
 import org.springframework.beans.factory.annotation.Value;
 
 /**
- *@version 1.0
- * @author Atul Saurabh
+ * <h3>Dependencies</h3>
+ * This implementation is depending upon <a href="https://logging.apache.org/log4j/">Log4j</a>. 
+ * To use this class in <a href="https://maven.apache.org/">Maven</a> project following
+ * dependency need to added in the pom file.
+ * <pre>
+ * {@code 
+ *        <dependency>
+ *        <groupId>log4j</groupId>
+ *        <artifactId>log4j</artifactId>
+ *        <version>1.2.17</version>
+ *        </dependency>
+ * }
+ * </pre>
+ * Otherwise Log4j dependencies need to be satisfied manually.
+ * <h3>Purposes</h3>
+ * <p>
+ * Purpose of this class is to provide a hassle free logging technique. 
+ * The implementation supports rolling based logging as well as non rolling
+ * based logging mechanism. The rolling option can be activated by setting 
+ * {@link #rollingOn} field.
  * 
+ * <p>
+ * Using this class following level of log can be recorded
+ * <pre>
+ * {@link org.apache.log4j.Level#ALL}, {@link org.apache.log4j.Level#DEBUG},
+ * {@link org.apache.log4j.Level#ERROR}, {@link org.apache.log4j.Level#FATAL},
+ * {@link org.apache.log4j.Level#INFO} and {@link org.apache.log4j.Level#WARN}
+ * </pre>
+ * 
+ *<h3>Configuration</h3>
+ * <p>
+ * On the basis of above mentioned {@link org.apache.log4j.Level} and if the rolling 
+ * is active then different type of log is recorded in different files. These files 
+ * can be configured by changing inside <b>application.properties</b> file.
+ * The following keys are used to configure the log files:
+ * <ul>
+ *     <li> erp.log.alllogfilename : To log {@link org.apache.log4j.Level#ALL}
+ *     <li> erp.log.debuflogfilename : To log {@link org.apache.log4j.Level#DEBUG} 
+ *     <li> erp.log.errorlogfilename : To log {@link org.apache.log4j.Level#ERROR}
+ *     <li> erp.log.fatallogfilename : To log {@link org.apache.log4j.Level#FATAL}
+ *     <li> erp.log.infologfilename : To log {@link org.apache.log4j.Level#INFO}
+ *     <li> erp.log.warnlogfilename : To log {@link org.apache.log4j.Level#WARN}
+ * </ul>
+ * Along with the files, the director for log repository can also be configured
+ * by setting the key <b><i>erp.log.directory</i></b> in application.properties file.
+ * <h3>Features</h3>
+ * <p>
+ * The rolling based logging mechanism provides a way to log the message on the 
+ * basis of date and time. The date and time option is configurable.
+ * The format can be decided using {@link #datePattern}. 
+ * <p>
+ *The format of content is also configurable. This format can be modified using
+ * {@link #conversionPattern}
+ * 
+ * @see #setRollingOn(boolean)
+ * @see #setDatePattern(java.lang.String) 
+ * @see #setConversionPattern(java.lang.String) 
+ * 
+ *@version 1.0
+ *@author Atul Saurabh
+ *@since 1.0  
  */
 
 public class ErpEcosystemLogger implements Logger
@@ -58,9 +116,9 @@ public class ErpEcosystemLogger implements Logger
    private String datePattern;
    
     /**
-     * 
+     * Logs the fatal level. 
      * @param message The fatal level message to be logged in
-     * 
+     * @since 1.0 
      */
     @Override
     public void logFatal(String message)
@@ -133,17 +191,45 @@ public class ErpEcosystemLogger implements Logger
         logger.fatal(message,throwable);
     }
     
+    
+    /*
+        I believe that all kind of log method requires level to decide 
+        what kind of file need to be generated and what format to use while 
+        recording the log. So this decision can be made centrally. That is why I
+        designed this central method to produce a logger object with the decision of
+        a) The level of the log
+        b) which class is generating the log
+        
+        That is why this method requies two parameters
+        a) errorClass : where the exception is generated
+        b) level of the log.
+    */
     private org.apache.log4j.Logger log(Class errorClass,Level level)
     {
+        /*
+            If the user of the system do not want to supply error generating class
+            then by default the current class will be considered to be the class which is 
+             generating the eeror.
+        */
         org.apache.log4j.Logger logger=null;
         if(errorClass == null)
             logger= org.apache.log4j.Logger.getLogger(this.getClass().getName());
         else
+            /*
+               
+            */
             logger=org.apache.log4j.Logger.getLogger(errorClass.getName());
-            
+         /*
+            If the user want to record the log into respective file then the rollingOn
+            should be true.
+        */   
       if(rollingOn)
       {
           try {
+              /*
+                 I want to record different level of log into different files.
+                  So what file wiil be used will depened upon the level.
+              */
               String fileName="default.log";
               if(level == Level.ALL)
                   fileName = all_log_file_name;
@@ -191,6 +277,7 @@ public class ErpEcosystemLogger implements Logger
       return rollingAppender;
   }
 
+    @Override
     public String getConversionPattern()
     {
         if(conversionPattern == null)
@@ -199,6 +286,7 @@ public class ErpEcosystemLogger implements Logger
             return conversionPattern;
     }
 
+    @Override
     public void setConversionPattern(String conversionPattern) {
         this.conversionPattern = conversionPattern;
     }
