@@ -1,9 +1,7 @@
 package com.dlinkddns.atulsaurabh.erpecosystem;
 
-import com.dlinkddns.atulsaurabh.erpecosystem.logger.Logger;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
