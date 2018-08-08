@@ -8,13 +8,13 @@ package com.dlinkddns.atulsaurabh.erpecosystem.logger;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Paths;
+import java.util.ResourceBundle;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.DailyRollingFileAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.PatternLayout;
-import org.springframework.beans.factory.annotation.Value;
 
 /**
  * <h3>Dependencies</h3>
@@ -50,18 +50,18 @@ import org.springframework.beans.factory.annotation.Value;
  * <p>
  * On the basis of above mentioned {@link org.apache.log4j.Level} and if the rolling 
  * is active then different type of log is recorded in different files. These files 
- * can be configured by changing inside <b>application.properties</b> file.
+ * can be configured by changing inside {@link ResourceBundle} file.
  * The following keys are used to configure the log files:
  * <ul>
- *     <li> erp.log.alllogfilename : To log {@link org.apache.log4j.Level#ALL}
- *     <li> erp.log.debuflogfilename : To log {@link org.apache.log4j.Level#DEBUG} 
- *     <li> erp.log.errorlogfilename : To log {@link org.apache.log4j.Level#ERROR}
- *     <li> erp.log.fatallogfilename : To log {@link org.apache.log4j.Level#FATAL}
- *     <li> erp.log.infologfilename : To log {@link org.apache.log4j.Level#INFO}
- *     <li> erp.log.warnlogfilename : To log {@link org.apache.log4j.Level#WARN}
+ *     <li> log.all   : To log {@link org.apache.log4j.Level#ALL}
+ *     <li> log.debug : To log {@link org.apache.log4j.Level#DEBUG} 
+ *     <li> log.error : To log {@link org.apache.log4j.Level#ERROR}
+ *     <li> log.fatal : To log {@link org.apache.log4j.Level#FATAL}
+ *     <li> log.info  : To log {@link org.apache.log4j.Level#INFO}
+ *     <li> log.warn  : To log {@link org.apache.log4j.Level#WARN}
  * </ul>
  * Along with the files, the director for log repository can also be configured
- * by setting the key <b><i>erp.log.directory</i></b> in application.properties file.
+ * by setting the key <b><i>log.directory</i></b> in {@link ResourceBundle} file.
  * <h3>Features</h3>
  * <p>
  * The rolling based logging mechanism provides a way to log the message on the 
@@ -82,25 +82,25 @@ import org.springframework.beans.factory.annotation.Value;
 
 public class ErpEcosystemLogger implements Logger
 {
-   @Value("${erp.log.directory}")
+  
    private String log_directory_name;
    
-   @Value("${erp.log.fatallogfilename}")
+  
    private String fatal_log_file_name;
    
-   @Value("${erp.log.debuflogfilename}")
+  
    private String debug_log_file_name;
    
-   @Value("${erp.log.infologfilename}")
+   
    private String info_log_file_name;
    
-   @Value("${erp.log.errorlogfilename}")
+   
    private String error_log_file_name;
    
-   @Value("${erp.log.warnlogfilename}")
+   
    private String warn_log_file_name;
    
-   @Value("${erp.log.alllogfilename}")
+   
    private String all_log_file_name;
    
    
@@ -110,10 +110,47 @@ public class ErpEcosystemLogger implements Logger
    @Getter
    @Setter
    private boolean rollingOn=false;
-   @Value("dd-MM-yyyy")
    @Getter
    @Setter
    private String datePattern;
+   
+    public ErpEcosystemLogger() 
+    {
+        this.log_directory_name="log";
+        this.all_log_file_name="all.log";
+        this.debug_log_file_name="debug.log";
+        this.error_log_file_name="error.log";
+        this.info_log_file_name="info.log";
+        this.warn_log_file_name="warn.log";
+        this.fatal_log_file_name="fatal.log";
+        this.datePattern="dd-MM-yyyy";
+        this.rollingOn=false;
+    }
+
+    public ErpEcosystemLogger(ResourceBundle resourceBundle) {
+        setOptions(resourceBundle);
+    }
+    
+    
+    private void setOptions(ResourceBundle resourceBundle)
+    {
+        this.log_directory_name=resourceBundle.getString("log.directory");      
+         this.fatal_log_file_name = resourceBundle.getString("log.fatal");
+         this.debug_log_file_name= resourceBundle.getString("log.debug");
+         this.error_log_file_name=resourceBundle.getString("log.error");
+         this.info_log_file_name=resourceBundle.getString("log.info");
+         this.warn_log_file_name=resourceBundle.getString("log.warn");
+         this.all_log_file_name=resourceBundle.getString("log.all");
+         this.datePattern=resourceBundle.getString("log.datepattern");
+         this.rollingOn=Boolean.valueOf(resourceBundle.getString("log.rolling"));
+    }
+    
+    
+
+    public void setResourceBundle(ResourceBundle resourceBundle) 
+    {
+        setOptions(resourceBundle);
+    }
    
     /**
      * Logs the fatal level. 

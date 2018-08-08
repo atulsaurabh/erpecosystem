@@ -5,6 +5,8 @@
  */
 package com.dlinkddns.atulsaurabh.erpecosystem.logger;
 
+import java.util.ResourceBundle;
+
 /**
  *
  * @author Atul Saurabh
@@ -97,4 +99,6 @@ public interface Logger
    public void logError(String message);
    public void logError(Class errorClass,String message);
    public void logError(Class errorClass,String message,Throwable throwable);
+   
+   public void setResourceBundle(ResourceBundle resourceBundle);
 }
