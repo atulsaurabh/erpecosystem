@@ -5,6 +5,7 @@
  */
 package com.dlinkddns.atulsaurabh.erpecosystem.loader;
 
+import com.dlinkddns.atulsaurabh.erpecosystem.logger.Logger;
 import com.dlinkddns.atulsaurabh.erpecosystem.util.ErpUtility;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +22,8 @@ import org.springframework.context.ApplicationContext;
  */
 public final class CustomFXMLLoader 
 {
-    
+    @Autowired
+    private Logger logger;
     @Autowired
     private ApplicationContext context;
     
@@ -37,7 +39,7 @@ public final class CustomFXMLLoader
             return fXMLLoader.load();
         } catch (IOException e) 
         {
-            
+            logger.logFatal(this.getClass(), "Unable to load UI component. Kindly see the full stacktrace", e);
         }
         return null;
     }
