@@ -6,14 +6,10 @@
 package com.dlinkddns.atulsaurabh.erpecosystem.configuration;
 
 import com.dlinkddns.atulsaurabh.erpecosystem.loader.CustomFXMLLoader;
-import com.dlinkddns.atulsaurabh.erpecosystem.logger.ErpEcosystemLogger;
-import com.dlinkddns.atulsaurabh.erpecosystem.logger.Logger;
 import com.dlinkddns.atulsaurabh.erpecosystem.util.ErpUtility;
 import com.dlinkddns.atulsaurabh.erpecosystem.util.ErpUtilityImpl;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 
 /**
  *
@@ -24,22 +20,7 @@ import org.springframework.context.annotation.Primary;
 @Configuration
 public class BaseConfiguration 
 {
-    @Bean
-    @Qualifier("basiclogger")
-     public Logger logger()
-     {
-         return new ErpEcosystemLogger();
-     }
-     
-     
-     @Bean
-     @Primary
-     public Logger rollingLogger()
-     {
-         ErpEcosystemLogger logger=new ErpEcosystemLogger();
-         logger.setRollingOn(true);
-         return logger;
-     }
+    
      
      
      @Bean
