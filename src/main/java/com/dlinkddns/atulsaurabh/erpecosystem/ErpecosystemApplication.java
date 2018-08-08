@@ -2,6 +2,8 @@ package com.dlinkddns.atulsaurabh.erpecosystem;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import net.dlinkddns.atulsaurabh.hasselfreelogger.api.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,6 +16,9 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 public class ErpecosystemApplication extends Application implements ApplicationRunner{
 
     private Stage primaryStage;
+    
+    @Autowired
+    private Logger logger;
 
     public static void main(String[] args) {
         SpringApplication.run(ErpecosystemApplication.class, args);
@@ -58,6 +63,7 @@ public class ErpecosystemApplication extends Application implements ApplicationR
       /*
          Startting the primary stage or window to interact the with the user.
       */   
+      
     }
     
     
