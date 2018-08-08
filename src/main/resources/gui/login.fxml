@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="767.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutX="9.0" layoutY="12.0" prefHeight="464.0" prefWidth="749.0" styleClass="loginWindow" stylesheets="@../css/styles.css">
+         <effect>
+            <DropShadow height="36.55" radius="15.442499999999999" width="27.22" />
+         </effect>
+         <children>
+            <JFXTextField layoutX="91.0" layoutY="95.0" prefHeight="51.0" prefWidth="548.0" promptText="User Name">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </JFXTextField>
+            <JFXPasswordField layoutX="91.0" layoutY="222.0" prefHeight="51.0" prefWidth="548.0" promptText="Password">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="91.0" layoutY="336.0" prefHeight="51.0" prefWidth="189.0" ripplerFill="WHITE" styleClass="buttonColor" stylesheets="@../css/styles.css" text="Login" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+               <effect>
+                  <DropShadow radius="15.4425" width="42.77" />
+               </effect>
+            </JFXButton>
+            <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="457.0" layoutY="336.0" prefHeight="51.0" prefWidth="189.0" styleClass="buttonColor" stylesheets="@../css/styles.css" text="Reset" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

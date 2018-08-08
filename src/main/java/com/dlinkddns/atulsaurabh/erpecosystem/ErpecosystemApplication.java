@@ -1,8 +1,11 @@
 package com.dlinkddns.atulsaurabh.erpecosystem;
 
+import com.dlinkddns.atulsaurabh.erpecosystem.loader.CustomFXMLLoader;
+import com.dlinkddns.atulsaurabh.erpecosystem.loader.GUIInfo;
 import javafx.application.Application;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
-import net.dlinkddns.atulsaurabh.hasselfreelogger.api.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -15,17 +18,21 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 @EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
 public class ErpecosystemApplication extends Application implements ApplicationRunner{
 
-    private Stage primaryStage;
+    private static Stage primaryStage;
     
     @Autowired
-    private Logger logger;
+    private CustomFXMLLoader customFXMLLoader;
 
     public static void main(String[] args) {
-        SpringApplication.run(ErpecosystemApplication.class, args);
+        Application.launch(args);
+        
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+       
+        this.primaryStage=primaryStage;
+       
         
         /*
              Retreiving all the command line parameters passed from the main method
@@ -41,7 +48,7 @@ public class ErpecosystemApplication extends Application implements ApplicationR
            and later on the basis of argument passed to the system this stage
            can be used.
         */
-        this.primaryStage = primaryStage;
+        
         /*
            Integrating Spring Framework
            Loading the spring container. The spring container take care every
@@ -52,7 +59,7 @@ public class ErpecosystemApplication extends Application implements ApplicationR
     }
 
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments  args) throws Exception {
       /*
           This method will be required if some debugging information is required
           If the system need to check certain functionality through then it can
@@ -63,7 +70,21 @@ public class ErpecosystemApplication extends Application implements ApplicationR
       /*
          Startting the primary stage or window to interact the with the user.
       */   
-      
+        //customFXMLLoader.setTitle(primaryStage, "window.login.title");
+        if(args.containsOption("debug"))
+        {
+            
+        }
+        else
+        {
+            primaryStage = customFXMLLoader.createStage(GUIInfo.GUI_LOGIN, "window.login.title");
+            Parent parent = customFXMLLoader.load(GUIInfo.GUI_LOGIN);
+            primaryStage.setScene(new Scene(parent));
+            primaryStage.setMaximized(false);
+            primaryStage.setFullScreen(false);
+            primaryStage.setResizable(false);
+            primaryStage.show();
+        }
     }
     
     

@@ -10,18 +10,15 @@ import com.dlinkddns.atulsaurabh.erpecosystem.util.ErpUtility;
 import com.dlinkddns.atulsaurabh.erpecosystem.util.ErpUtilityImpl;
 import java.io.InputStream;
 import java.util.Properties;
-import java.util.ResourceBundle;
 import net.dlinkddns.atulsaurabh.hasselfreelogger.api.Logger;
 import net.dlinkddns.atulsaurabh.hasselfreelogger.impl.HasselFreeLogger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
-import org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.context.support.MessageSourceResourceBundle;
-import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.io.ClassPathResource;
 
 
@@ -32,6 +29,12 @@ import org.springframework.core.io.ClassPathResource;
  */
 
 @Configuration
+@ComponentScan(basePackages = {"com.dlinkddns.atulsaurabh.erpecosystem.loader"})
+@PropertySources(
+        {
+            @PropertySource("classpath:window.properties")
+        }
+)
 public class BaseConfiguration 
 {
    

@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import net.dlinkddns.atulsaurabh.hasselfreelogger.api.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
@@ -21,7 +22,8 @@ import org.springframework.context.ApplicationContext;
  */
 public final class CustomFXMLLoader 
 {
-    
+   @Autowired
+   private Logger logger;
     @Autowired
     private ApplicationContext context;
     
@@ -37,7 +39,7 @@ public final class CustomFXMLLoader
             return fXMLLoader.load();
         } catch (IOException e) 
         {
-            //logger.logFatal(this.getClass(), "Unable to load UI component. Kindly see the full stacktrace", e);
+           logger.logFatal(this.getClass(), "Unable to load UI component. Kindly see the full stacktrace", e);
         }
         return null;
     }
@@ -49,5 +51,10 @@ public final class CustomFXMLLoader
         stage.setTitle(erpUtility.resolvKey(key));
         stage.setScene(new Scene(load(UIName)));
         return stage;
+    }
+    
+    public final void setTitle(Stage stage,String key)
+    {
+        stage.setTitle(erpUtility.resolvKey(key));
     }
 }
