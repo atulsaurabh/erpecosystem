@@ -10,11 +10,73 @@ and open the template in the editor.
 
 .sidepanel
 {
-    -fx-background-color:#424242;
+    -fx-background-color:#939dad;
 }
 
 .sidepanel #adminLabel
 {
-    -fx-background-color:#0b97ec;
+    -fx-background-color:#6200ea;
+    -fx-padding:10; 
 }
 
+#searchIcon{
+    -fx-fill:#3e2723;
+}
+
+.footer
+{
+    -fx-background-color:#558b2f;
+}
+
+.searchBar{
+    -fx-background-color:transparent;
+    -fx-height:20;
+    -fx-text-fill:#ffffff;
+    -fx-font-size:20px;
+    /*-fx-border-style:solid;
+    -fx-border-width:1px; */
+}
+
+.dashboard_options
+{
+    -fx-text-fill:#212121;
+    -fx-font-weight:bold;
+    -fx-font-size:20px;
+    -fx-border-color:transparent;
+}
+
+.dashboard_options:hover
+{
+   -fx-text-fill:#212121;
+   -fx-font-weight:bold;
+   -fx-font-size:20px;
+   -fx-border-color:transparent;
+}
+
+/*.dashboard_options:active
+{
+   -fx-text-fill:#ffca28;
+   -fx-font-weight:bold;
+   -fx-font-size:20px;
+   -fx-border:none; 
+}*/
+.dashboard_options:pressed
+{
+    -fx-text-fill:#212121;
+   -fx-font-weight:bold;
+   -fx-font-size:20px;
+   -fx-border-color:transparent;
+   -fx-text-decoration:none;
+}
+
+
+.dashboard_text
+{
+    -fx-text-fill:#3e2723;
+    -fx-font-weight:bold;
+    -fx-font-size:24px;
+}
+.separetor
+{
+    -fx-background-color:#ffffff;
+}

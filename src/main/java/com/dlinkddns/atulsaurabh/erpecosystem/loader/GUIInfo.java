@@ -12,4 +12,5 @@ package com.dlinkddns.atulsaurabh.erpecosystem.loader;
 public interface GUIInfo {
     public static final String GUI_HOME="/gui/";
     public static final String GUI_LOGIN="login.fxml";
+    public static final String GUI_DASHBOARD="newdashboard.fxml";
 }

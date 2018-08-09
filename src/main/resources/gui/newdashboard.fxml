@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="714.0" prefWidth="302.0" styleClass="sidepanel" stylesheets="@../css/dashboard.css" AnchorPane.bottomAnchor="47.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label id="adminLabel" prefHeight="77.0" prefWidth="305.0" text="Admin Panel" textFill="#fffdfd" VBox.vgrow="ALWAYS">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font name="Ebrima Bold" size="36.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="302.0">
+               <children>
+                  <FontAwesomeIconView id="searchIcon" glyphName="SEARCH" size="20.0" textOrigin="CENTER" wrappingWidth="17.0">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIconView>
+                  <JFXTextField prefHeight="44.0" prefWidth="247.0" promptText="Search" styleClass="searchBar" stylesheets="@../css/dashboard.css" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="3.0" />
+                     </padding>
+                  </JFXTextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="87.0" prefHeight="61.0" prefWidth="302.0">
+               <children>
+                  <FontAwesomeIconView id="searchIcon" glyphName="DASHBOARD" size="20.0" textOrigin="CENTER" wrappingWidth="17.0">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIconView>
+                  <Label prefHeight="39.0" prefWidth="276.0" styleClass="dashboard_text" stylesheets="@../css/dashboard.css" text="DASHBOARD" HBox.hgrow="ALWAYS">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="136.0" prefHeight="61.0" prefWidth="302.0">
+               <children>
+                  <FontAwesomeIconView id="searchIcon" glyphName="USER" size="20.0" textOrigin="CENTER" wrappingWidth="17.0">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIconView>
+                  <Hyperlink prefHeight="29.0" prefWidth="275.0" styleClass="dashboard_options" stylesheets="@../css/dashboard.css" text="User Management" textFill="#212121" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Hyperlink>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="197.0" prefHeight="61.0" prefWidth="302.0">
+               <children>
+                  <FontAwesomeIconView id="searchIcon" glyphName="CALENDAR" size="20.0" text="" textOrigin="CENTER" wrappingWidth="17.0">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIconView>
+                  <Hyperlink prefHeight="29.0" prefWidth="275.0" styleClass="dashboard_options" stylesheets="@../css/dashboard.css" text="Topic Management" textFill="#212121" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Hyperlink>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="258.0" prefHeight="61.0" prefWidth="302.0">
+               <children>
+                  <FontAwesomeIconView id="searchIcon" glyphName="BOLT" size="20.0" textOrigin="CENTER" wrappingWidth="17.0">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIconView>
+                  <Hyperlink prefHeight="29.0" prefWidth="275.0" styleClass="dashboard_options" stylesheets="@../css/dashboard.css" text="HR Management" textFill="#212121" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Hyperlink>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="319.0" prefHeight="61.0" prefWidth="302.0">
+               <children>
+                  <FontAwesomeIconView id="searchIcon" glyphName="BAR_CHART" size="20.0" textOrigin="CENTER" wrappingWidth="17.0">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </FontAwesomeIconView>
+                  <Hyperlink prefHeight="29.0" prefWidth="275.0" styleClass="dashboard_options" stylesheets="@../css/dashboard.css" text="Reports" textFill="#212121" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Hyperlink>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="302.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="714.0" prefWidth="632.0" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <HBox alignment="BOTTOM_RIGHT" layoutY="711.0" prefHeight="50.0" prefWidth="932.0" styleClass="footer" stylesheets="@../css/dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <effect>
+            <DropShadow height="52.1" radius="20.884999999999998" width="33.44" />
+         </effect>
+         <children>
+            <Label prefHeight="50.0" prefWidth="238.0" text="Powered By:  atul saurabh" textFill="WHITE">
+               <font>
+                  <Font name="Ebrima" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
