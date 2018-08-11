@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import net.dlinkddns.atulsaurabh.hasselfreelogger.api.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 
 /**
@@ -23,6 +24,7 @@ import org.springframework.context.ApplicationContext;
 public final class CustomFXMLLoader 
 {
    @Autowired
+   @Qualifier("basiclogger")
    private Logger logger;
     @Autowired
     private ApplicationContext context;

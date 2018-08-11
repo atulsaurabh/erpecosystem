@@ -5,28 +5,10 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dlinkddns.atulsaurabh.erpecosystem.controller.AdminDashboardController">
-   <children>
-      <VBox layoutX="255.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="714.0" prefWidth="678.0" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="255.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0" />
-      <HBox alignment="BOTTOM_RIGHT" layoutY="711.0" prefHeight="50.0" prefWidth="932.0" styleClass="footer" stylesheets="@../css/dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <effect>
-            <DropShadow height="52.1" radius="20.884999999999998" width="33.44" />
-         </effect>
-         <children>
-            <Label prefHeight="50.0" prefWidth="238.0" text="Powered By:  atul saurabh" textFill="WHITE">
-               <font>
-                  <Font name="Ebrima" size="20.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
-     <VBox fx:id="sidepane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="256.0" styleClass="sidepanel" stylesheets="@../css/dashboard.css" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" styleClass="sidepanel" stylesheets="@../css/dashboard.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label id="adminLabel" prefHeight="85.0" prefWidth="334.0" stylesheets="@../css/dashboard.css" text="Admin Panel" />
       <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="332.0">
@@ -55,7 +37,7 @@
             <Insets left="10.0" />
          </padding>
       </HBox>
-      <HBox accessibleText="useroption" alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="332.0" styleClass="dashboard_label" stylesheets="@../css/dashboard.css">
+      <HBox accessibleText="useroption" alignment="CENTER_LEFT"  prefHeight="46.0" prefWidth="332.0" styleClass="dashboard_label" stylesheets="@../css/dashboard.css">
          <children>
             <FontAwesomeIconView glyphName="USER" size="20" />
             <Hyperlink prefHeight="29.0" prefWidth="314.0" styleClass="dashboard_options" stylesheets="@../css/dashboard.css" text="User Management" HBox.hgrow="ALWAYS">
@@ -108,9 +90,4 @@
          </padding>
       </HBox>
    </children>
-         <effect>
-            <DropShadow radius="26.325" width="86.3" />
-         </effect>
 </VBox>
-   </children>
-</AnchorPane>
