@@ -13,7 +13,10 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dlinkddns.atulsaurabh.erpecosystem.controller.AdminDashboardController">
    <children>
-      <VBox layoutX="255.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="714.0" prefWidth="678.0" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="255.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0" />
+      <VBox layoutX="255.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="714.0" prefWidth="678.0" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="255.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane fx:id="container" prefHeight="713.0" prefWidth="678.0" />
+         </children></VBox>
       <HBox alignment="BOTTOM_RIGHT" layoutY="711.0" prefHeight="50.0" prefWidth="932.0" styleClass="footer" stylesheets="@../css/dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <effect>
             <DropShadow height="52.1" radius="20.884999999999998" width="33.44" />
@@ -58,7 +61,7 @@
       <HBox accessibleText="useroption" alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="332.0" styleClass="dashboard_label" stylesheets="@../css/dashboard.css">
          <children>
             <FontAwesomeIconView glyphName="USER" size="20" />
-            <Hyperlink prefHeight="29.0" prefWidth="314.0" styleClass="dashboard_options" stylesheets="@../css/dashboard.css" text="User Management" HBox.hgrow="ALWAYS">
+            <Hyperlink accessibleText="user" onAction="#showUserCreationForm" prefHeight="29.0" prefWidth="314.0" styleClass="dashboard_options" stylesheets="@../css/dashboard.css" text="User Management" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets left="10.0" />
                </padding>

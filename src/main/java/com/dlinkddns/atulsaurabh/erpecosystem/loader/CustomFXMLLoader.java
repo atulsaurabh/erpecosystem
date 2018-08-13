@@ -32,6 +32,26 @@ public final class CustomFXMLLoader
     @Autowired
     private ErpUtility erpUtility;
     
+    
+    public final NodeAndController loadFx(String guiName)
+    {
+        try {
+            FXMLLoader fXMLLoader = new FXMLLoader();
+            fXMLLoader.setControllerFactory(context::getBean);
+            fXMLLoader.setLocation(getClass().getResource(GUIInfo.GUI_HOME+guiName));
+            NodeAndController nodeAndController = new NodeAndController();
+            Parent parent=fXMLLoader.load();
+            Object controller=fXMLLoader.getController();
+            nodeAndController.setParent(parent);
+            nodeAndController.setController(controller);
+            return nodeAndController;
+        } catch (Exception e) {
+            logger.logFatal(this.getClass(), "Unable to load UI component. Kindly see the full stacktrace", e);
+        }
+        
+        return null;
+    }
+    
     public final Parent load(String guiName)
     {
         try {

@@ -7,18 +7,15 @@ package com.dlinkddns.atulsaurabh.erpecosystem.controller;
 
 import com.dlinkddns.atulsaurabh.erpecosystem.loader.CustomFXMLLoader;
 import com.dlinkddns.atulsaurabh.erpecosystem.loader.GUIInfo;
-import com.jfoenix.controls.JFXDrawer;
-import com.jfoenix.controls.JFXHamburger;
-import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
+import com.dlinkddns.atulsaurabh.erpecosystem.loader.NodeAndController;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,7 +29,11 @@ public class AdminDashboardController implements Initializable
 {
     @FXML
     private VBox sidepane;
+    @FXML
+    private AnchorPane container;
  
+    @Autowired
+    private CustomFXMLLoader customFXMLLoader;
     
     @Override
     public void initialize(URL url,ResourceBundle bundle)
@@ -53,18 +54,15 @@ public class AdminDashboardController implements Initializable
         
     }
     
- /* @FXML
-    public void changeBackgroundColor(MouseEvent mouseEvent)
-    {
-        HBox hbox= (HBox)mouseEvent.getSource();
-       hbox.setStyle("-fx-background-color:#689f38");
-    }
     
     @FXML
-    public void resetBackgroundColor(MouseEvent mouseEvent)
+    public void showUserCreationForm(ActionEvent event)
     {
-        HBox hbox= (HBox)mouseEvent.getSource();
-       hbox.setStyle("-fx-background-color:#ffffff");
+        NodeAndController nodeAndController=customFXMLLoader.loadFx(GUIInfo.GUI_CREATE_USER_FORM);
+        UserAddFormController controller = (UserAddFormController)nodeAndController.getController();
+        controller.setParent(nodeAndController.getParent());
+        container.getChildren().add(nodeAndController.getParent());
     }
-*/
+    
+    
 }
