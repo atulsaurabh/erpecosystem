@@ -5,6 +5,7 @@
  */
 package com.dlinkddns.atulsaurabh.erpecosystem.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,6 +32,19 @@ public class SocietyMember
    private String username;
    private String passphrase;
    private String accountstatus;
+   @Column(length = 400)
+   private String publickey;
+
+    public String getPublickey() {
+        return publickey;
+    }
+
+    public void setPublickey(String publickey) {
+        this.publickey = publickey;
+    }
+   
+   
+   
 
     public String getFirstname() {
         return firstname;

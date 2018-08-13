@@ -28,37 +28,37 @@
                         <Font name="System Bold" size="26.0" />
                      </font>
                   </Label>
-                  <JFXTextField layoutX="110.0" layoutY="100.0" prefHeight="35.0" prefWidth="488.0" promptText="FIRST NAME">
+                  <JFXTextField fx:id="firstName" layoutX="110.0" layoutY="100.0" prefHeight="35.0" prefWidth="488.0" promptText="FIRST NAME">
                      <effect>
                         <SepiaTone />
                      </effect>
                   </JFXTextField>
-                  <JFXTextField layoutX="110.0" layoutY="157.0" prefHeight="36.0" prefWidth="488.0" promptText="LAST NAME" />
-                  <JFXComboBox layoutX="110.0" layoutY="215.0" prefHeight="36.0" prefWidth="124.0" promptText="HOUSE TYPE" />
-                  <JFXComboBox layoutX="260.0" layoutY="215.0" prefHeight="36.0" prefWidth="337.0" promptText="HOUSE NUMBER" />
-                  <JFXTextField layoutX="110.0" layoutY="279.0" prefHeight="36.0" prefWidth="488.0" promptText="USER NAME" />
-                  <JFXPasswordField layoutX="110.0" layoutY="340.0" prefHeight="36.0" prefWidth="488.0" promptText="PASSPHRASE" />
-                  <JFXCheckBox layoutX="110.0" layoutY="545.0" prefHeight="36.0" prefWidth="169.0" text="ADMINISTRATOR" />
-                  <JFXTextArea layoutX="110.0" layoutY="408.0" prefHeight="99.0" prefWidth="393.0" promptText="SECURITY KEY" />
+                  <JFXTextField fx:id="lastName" layoutX="110.0" layoutY="157.0" prefHeight="36.0" prefWidth="488.0" promptText="LAST NAME" />
+                  <JFXComboBox fx:id="houseType" layoutX="110.0" layoutY="215.0" prefHeight="36.0" prefWidth="124.0" promptText="HOUSE TYPE" />
+                  <JFXComboBox fx:id="houseNumber" layoutX="260.0" layoutY="215.0" prefHeight="36.0" prefWidth="337.0" promptText="HOUSE NUMBER" />
+                  <JFXTextField fx:id="userName" layoutX="110.0" layoutY="279.0" prefHeight="36.0" prefWidth="488.0" promptText="USER NAME" />
+                  <JFXPasswordField fx:id="passphrase" layoutX="110.0" layoutY="340.0" prefHeight="36.0" prefWidth="488.0" promptText="PASSPHRASE" />
+                  <JFXCheckBox fx:id="administrator" layoutX="110.0" layoutY="545.0" prefHeight="36.0" prefWidth="169.0" text="ADMINISTRATOR" />
+                  <JFXTextArea fx:id="securityKey" layoutX="110.0" layoutY="408.0" prefHeight="99.0" prefWidth="393.0" promptText="SECURITY KEY" />
                   <HBox alignment="CENTER_LEFT" layoutX="279.0" layoutY="545.0" prefHeight="36.0" prefWidth="332.0">
                      <children>
-                        <JFXRadioButton prefHeight="36.0" prefWidth="112.0" text="SECRETARY">
+                        <JFXRadioButton fx:id="secretary" prefHeight="36.0" prefWidth="112.0" text="SECRETARY">
                            <toggleGroup>
                               <ToggleGroup fx:id="ROLES" />
                            </toggleGroup>
                         </JFXRadioButton>
-                        <JFXRadioButton prefHeight="36.0" prefWidth="112.0" text="COORD" toggleGroup="$ROLES" />
-                        <JFXRadioButton prefHeight="36.0" prefWidth="111.0" text="MEMBER" toggleGroup="$ROLES" />
+                        <JFXRadioButton fx:id="coord" prefHeight="36.0" prefWidth="112.0" text="COORD" toggleGroup="$ROLES" />
+                        <JFXRadioButton fx:id="member" prefHeight="36.0" prefWidth="111.0" text="MEMBER" toggleGroup="$ROLES" />
                      </children>
                   </HBox>
-                  <JFXComboBox layoutX="110.0" layoutY="605.0" prefHeight="36.0" prefWidth="488.0" promptText="ACCOUNT STATUS" />
-                  <JFXButton buttonType="RAISED" layoutX="522.0" layoutY="408.0" prefHeight="102.0" prefWidth="85.0" styleClass="secretkeybutton" stylesheets="@../css/window.css" text="GENERATE">
+                  <JFXComboBox fx:id="accountStatus" layoutX="110.0" layoutY="605.0" prefHeight="36.0" prefWidth="488.0" promptText="ACCOUNT STATUS" />
+                  <JFXButton buttonType="RAISED" layoutX="522.0" layoutY="408.0" onAction="#createAndSaveKey" prefHeight="102.0" prefWidth="85.0" styleClass="secretkeybutton" stylesheets="@../css/window.css" text="GENERATE">
                      <effect>
                         <DropShadow height="41.21" radius="19.7175" width="39.66" />
                      </effect>
                   </JFXButton>
                   <JFXButton defaultButton="true" layoutX="283.0" layoutY="714.0" prefHeight="64.0" prefWidth="164.0" styleClass="secretkeybutton" stylesheets="@../css/window.css" text="CREATE USER" />
-                  <JFXTextField layoutX="106.0" layoutY="667.0" prefHeight="35.0" prefWidth="488.0" promptText="MOBILE NUMBER" />
+                  <JFXTextField fx:id="mobileNumber" layoutX="106.0" layoutY="667.0" prefHeight="35.0" prefWidth="488.0" promptText="MOBILE NUMBER" />
                </children></AnchorPane>
         </content>
       </ScrollPane>
