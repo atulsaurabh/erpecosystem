@@ -36,7 +36,6 @@ public class SocietyMember implements Serializable
    private char housetype;
    private int housenumber;
    private String mobilenumber;
-   private boolean administrator;
    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
    @JoinTable(name = "members_roles",
            joinColumns = @JoinColumn(name = "member"),
@@ -96,15 +95,6 @@ public class SocietyMember implements Serializable
     public void setMobilenumber(String mobilenumber) {
         this.mobilenumber = mobilenumber;
     }
-
-    public boolean isAdministrator() {
-        return administrator;
-    }
-
-    public void setAdministrator(boolean administrator) {
-        this.administrator = administrator;
-    }
-
 
     public String getUsername() {
         return username;

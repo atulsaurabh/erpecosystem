@@ -25,6 +25,15 @@ public class MemberRole implements Serializable
     private int roleid;
     private String rolename;
 
+    public MemberRole() {
+    }
+
+    public MemberRole(String rolename) {
+        this.rolename = rolename;
+    }
+    
+    
+
     
     public int getRoleid() {
         return roleid;

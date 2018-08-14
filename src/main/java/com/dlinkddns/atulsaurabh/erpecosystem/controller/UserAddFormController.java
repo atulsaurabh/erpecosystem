@@ -5,6 +5,10 @@
  */
 package com.dlinkddns.atulsaurabh.erpecosystem.controller;
 
+import com.dlinkddns.atulsaurabh.erpecosystem.entity.MemberRole;
+import com.dlinkddns.atulsaurabh.erpecosystem.entity.RoleInfo;
+import com.dlinkddns.atulsaurabh.erpecosystem.entity.SocietyMember;
+import com.dlinkddns.atulsaurabh.erpecosystem.service.SocietyMemberService;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
@@ -30,12 +34,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import net.dlinkddns.atulsaurabh.hasselfreelogger.api.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 /**
  *
- * @author Suyojan
+ * @author Atul Saurabh
  */
 
 @Controller
@@ -84,7 +89,10 @@ public class UserAddFormController {
     @FXML
     private JFXTextField mobileNumber;
 
+    @Autowired
     private Logger logger;
+    @Autowired
+    private SocietyMemberService societyMemberService;
     private Parent parent;
 
     public void setParent(Parent parent) {
@@ -126,6 +134,27 @@ public class UserAddFormController {
         parent.setTranslateX(newX);
         parent.setTranslateY(newY);
         mouseDragEvent.consume();
+    }
+    
+    @FXML
+    public void createUser(ActionEvent actionEvent)
+    {
+        SocietyMember societyMember=buildSocietyMember();
+        Alert alert=null;
+        if(societyMemberService.createNewSocietyMember(societyMember))
+        {
+            alert=new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Society Member Created Successfully");
+            alert.setHeaderText("Success");
+            alert.showAndWait();
+        }
+        else
+        {
+            alert=new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Society Member Created Successfully");
+            alert.setHeaderText("Success");
+            alert.showAndWait();
+        }
     }
     
     @FXML
@@ -176,5 +205,27 @@ public class UserAddFormController {
             alert.showAndWait();
         }
         
+    }
+
+    private SocietyMember buildSocietyMember() {
+        
+        SocietyMember member=new SocietyMember();
+        member.setFirstname(firstName.getText());
+        member.setLastname(lastName.getText());
+        member.setHousetype(houseType.getSelectionModel().getSelectedItem().charAt(0));
+        member.setHousenumber(houseNumber.getSelectionModel().getSelectedItem());
+        member.setUsername(userName.getText());
+        member.setPassphrase(passphrase.getText());
+        member.setPublickey(securityKey.getText());
+        if(administrator.isSelected())
+            member.getMemberRoles().add(new MemberRole(RoleInfo.ADMINISTRATOR));
+        if(secretary.isSelected())
+            member.getMemberRoles().add(new MemberRole(RoleInfo.SECRETARY));
+        else if(coord.isSelected())
+            member.getMemberRoles().add(new MemberRole(RoleInfo.COORDINATOR));
+        else if(this.member.isSelected())
+            member.getMemberRoles().add(new MemberRole(RoleInfo.SOCIETY_MEMBER));
+        member.setMobilenumber(mobileNumber.getText());
+        return member;
     }
 }

@@ -48,7 +48,7 @@
                            </toggleGroup>
                         </JFXRadioButton>
                         <JFXRadioButton fx:id="coord" prefHeight="36.0" prefWidth="112.0" text="COORD" toggleGroup="$ROLES" />
-                        <JFXRadioButton fx:id="member" prefHeight="36.0" prefWidth="111.0" text="MEMBER" toggleGroup="$ROLES" />
+                        <JFXRadioButton fx:id="member" prefHeight="36.0" prefWidth="111.0" selected="true" text="MEMBER" toggleGroup="$ROLES" />
                      </children>
                   </HBox>
                   <JFXComboBox fx:id="accountStatus" layoutX="110.0" layoutY="605.0" prefHeight="36.0" prefWidth="488.0" promptText="ACCOUNT STATUS" />
@@ -57,7 +57,7 @@
                         <DropShadow height="41.21" radius="19.7175" width="39.66" />
                      </effect>
                   </JFXButton>
-                  <JFXButton defaultButton="true" layoutX="283.0" layoutY="714.0" prefHeight="64.0" prefWidth="164.0" styleClass="secretkeybutton" stylesheets="@../css/window.css" text="CREATE USER" />
+                  <JFXButton defaultButton="true" layoutX="283.0" layoutY="714.0" onAction="#createUser" prefHeight="64.0" prefWidth="164.0" styleClass="secretkeybutton" stylesheets="@../css/window.css" text="CREATE USER" />
                   <JFXTextField fx:id="mobileNumber" layoutX="106.0" layoutY="667.0" prefHeight="35.0" prefWidth="488.0" promptText="MOBILE NUMBER" />
                </children></AnchorPane>
         </content>
