@@ -17,7 +17,7 @@ and open the template in the editor.
 
 .sidepanel #adminLabel
 {
-    -fx-background-color:#387002;
+    -fx-background-color:#689f38;
     -fx-padding:10; 
     -fx-text-fill:#ffffff;
     -fx-font-size:35px;
@@ -104,4 +104,40 @@ and open the template in the editor.
 .dashboard_label:hover
 {
     -fx-backgound-color:#689f38;
+}
+
+.context-menu
+{
+    -fx-background-color:#387002;
+}
+.menubar
+{
+    -fx-background-color:#387002;
+}
+
+.menu
+{
+   -fx-background-color:transparent;
+}
+
+.menu .label
+{
+    
+    -fx-text-fill:#ffffff;
+}
+
+.menu-item .label{
+    -fx-background-color:transparent;
+}
+
+
+.menu:hover,.menu:focused,.menu:pressed,.menu:showing
+{
+    -fx-background-color:#255d00;
+}
+
+
+.menu-item:hover,.menu-item:focused{
+    -fx-background-color:#255d00;
+    -fx-text-fill:#ffffff;
 }

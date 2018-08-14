@@ -5,11 +5,19 @@
  */
 package com.dlinkddns.atulsaurabh.erpecosystem.entity;
 
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -17,10 +25,11 @@ import javax.persistence.Id;
  */
 
 @Entity
-public class SocietyMember 
+public class SocietyMember implements Serializable
 {
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private int userid;
    private String firstname;
    private String lastname;
@@ -28,7 +37,12 @@ public class SocietyMember
    private int housenumber;
    private String mobilenumber;
    private boolean administrator;
-   private String role;
+   @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+   @JoinTable(name = "members_roles",
+           joinColumns = @JoinColumn("member"),
+           inverseJoinColumns = @JoinColumn("role")
+   )
+   private Set<MemberRole> memberRoles=new HashSet<>();
    private String username;
    private String passphrase;
    private String accountstatus;
@@ -43,9 +57,6 @@ public class SocietyMember
         this.publickey = publickey;
     }
    
-   
-   
-
     public String getFirstname() {
         return firstname;
     }
@@ -94,13 +105,6 @@ public class SocietyMember
         this.administrator = administrator;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     public String getUsername() {
         return username;
@@ -133,7 +137,13 @@ public class SocietyMember
     public void setUserid(int userid) {
         this.userid = userid;
     }
-   
-   
-   
+
+    public Set<MemberRole> getMemberRoles() {
+        return memberRoles;
+    }
+
+    public void setMemberRoles(Set<MemberRole> memberRoles) {
+        this.memberRoles = memberRoles;
+    }
+      
 }

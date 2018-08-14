@@ -5,7 +5,11 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -22,16 +26,16 @@
             <DropShadow height="52.1" radius="20.884999999999998" width="33.44" />
          </effect>
          <children>
-            <Label prefHeight="50.0" prefWidth="238.0" text="Powered By:  atul saurabh" textFill="WHITE">
+            <Label prefHeight="50.0" prefWidth="276.0" text="Powered By:  Suyojan Systems" textFill="WHITE">
                <font>
                   <Font name="Ebrima" size="20.0" />
                </font>
             </Label>
          </children>
       </HBox>
-     <VBox fx:id="sidepane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="256.0" styleClass="sidepanel" stylesheets="@../css/dashboard.css" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+     <VBox fx:id="sidepane" layoutY="34.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="256.0" styleClass="sidepanel" stylesheets="@../css/dashboard.css" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="34.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label id="adminLabel" prefHeight="85.0" prefWidth="334.0" stylesheets="@../css/dashboard.css" text="Admin Panel" />
+      <Label id="adminLabel" prefHeight="85.0" prefWidth="256.0" stylesheets="@../css/dashboard.css" text="Admin Panel" />
       <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="332.0">
          <children>
             <FontAwesomeIconView id="searchIcon" glyphName="SEARCH" size="20.0" />
@@ -115,5 +119,46 @@
             <DropShadow radius="26.325" width="86.3" />
          </effect>
 </VBox>
+      <MenuBar layoutY="-2.0" prefHeight="32.0" prefWidth="932.0" styleClass="menubar" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="User">
+            <items>
+              <MenuItem text="New">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem text="Update">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="U" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem text="Delete">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="D" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem text="Activation">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+            </items>
+               <accelerator>
+                  <KeyCodeCombination alt="ANY" code="U" control="UP" meta="UP" shift="UP" shortcut="UP" />
+               </accelerator>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
    </children>
 </AnchorPane>

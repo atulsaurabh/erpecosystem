@@ -146,7 +146,7 @@ public class UserAddFormController {
             fileChooser.setTitle("Save The Key");
             String initialFileName=houseType.getSelectionModel().getSelectedItem()+
                                    houseNumber.getSelectionModel().getSelectedItem();
-            if (initialFileName != null && initialFileName.trim().equals(""))
+            if (initialFileName != null && !initialFileName.trim().equals(""))
                 fileChooser.setInitialFileName(initialFileName + ".key");
             else
                 fileChooser.setInitialFileName("default.key"); 
