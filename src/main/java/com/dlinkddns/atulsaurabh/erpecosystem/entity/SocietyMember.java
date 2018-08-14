@@ -39,8 +39,8 @@ public class SocietyMember implements Serializable
    private boolean administrator;
    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
    @JoinTable(name = "members_roles",
-           joinColumns = @JoinColumn("member"),
-           inverseJoinColumns = @JoinColumn("role")
+           joinColumns = @JoinColumn(name = "member"),
+           inverseJoinColumns = @JoinColumn(name="role")
    )
    private Set<MemberRole> memberRoles=new HashSet<>();
    private String username;
