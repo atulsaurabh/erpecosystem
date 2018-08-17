@@ -6,8 +6,9 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
+<?import com.dlinkddns.atulsaurabh.erpecosystem.custom.ErpMenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -119,7 +120,7 @@
             <DropShadow radius="26.325" width="86.3" />
          </effect>
 </VBox>
-      <MenuBar layoutY="-2.0" prefHeight="32.0" prefWidth="932.0" styleClass="menubar" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <ErpMenuBar fx:id="adminMenuBar" layoutY="-2.0" prefHeight="32.0" prefWidth="932.0" styleClass="menubar" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="User">
             <items>
@@ -138,6 +139,7 @@
                         <KeyCodeCombination alt="DOWN" code="D" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem text="Activation">
                      <accelerator>
                         <KeyCodeCombination alt="DOWN" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
@@ -148,10 +150,15 @@
                   <KeyCodeCombination alt="ANY" code="U" control="UP" meta="UP" shift="UP" shortcut="UP" />
                </accelerator>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu mnemonicParsing="false" text="Plugins">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem mnemonicParsing="false" onAction="#openServiceRegistryForm" text="Upload" />
             </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Modules">
+              <items>
+                  
+              </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
@@ -159,6 +166,6 @@
             </items>
           </Menu>
         </menus>
-      </MenuBar>
+      </ErpMenuBar>
    </children>
 </AnchorPane>

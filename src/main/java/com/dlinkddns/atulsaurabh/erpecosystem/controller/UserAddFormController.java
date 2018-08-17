@@ -171,7 +171,7 @@ public class UserAddFormController {
             securityKey.setText(encoder.encodeToString(publicKey.getEncoded()));
             System.out.println("Length="+encoder.encodeToString(publicKey.getEncoded()).length());
             FileChooser fileChooser=new FileChooser();
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Key File",".key"));
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Key File","*.key"));
             fileChooser.setTitle("Save The Key");
             String initialFileName=houseType.getSelectionModel().getSelectedItem()+
                                    houseNumber.getSelectionModel().getSelectedItem();
