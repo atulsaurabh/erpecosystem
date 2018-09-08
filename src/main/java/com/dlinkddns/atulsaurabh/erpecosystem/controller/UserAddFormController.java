@@ -23,12 +23,17 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
+import javafx.scene.control.Alert;import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -93,6 +98,8 @@ public class UserAddFormController {
     private Logger logger;
     @Autowired
     private SocietyMemberService societyMemberService;
+    @Autowired
+    private Validator validator;
     private Parent parent;
 
     public void setParent(Parent parent) {
@@ -120,20 +127,36 @@ public class UserAddFormController {
     public void createUser(ActionEvent actionEvent)
     {
         SocietyMember societyMember=buildSocietyMember();
-        Alert alert=null;
-        if(societyMemberService.createNewSocietyMember(societyMember))
+        Set<ConstraintViolation<SocietyMember>>  validMember = validator.validate(societyMember);
+        if(!validMember.isEmpty())
         {
-            alert=new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Society Member Created Successfully");
-            alert.setHeaderText("Success");
-            alert.showAndWait();
+        	String messages ="";
+        	for(ConstraintViolation<SocietyMember> constraintViolation : validMember)
+        	{
+        		messages += constraintViolation.getMessage()+"\n";
+        	}
+        	Alert alert = new Alert(Alert.AlertType.ERROR);
+        	alert.setContentText(messages);
+        	alert.setHeaderText("Error in Validation");
+        	alert.show();
         }
         else
         {
-            alert=new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Society Member Created Successfully");
-            alert.setHeaderText("Success");
-            alert.showAndWait();
+	        Alert alert=null;
+	        if(societyMemberService.createNewSocietyMember(societyMember))
+	        {
+	            alert=new Alert(Alert.AlertType.INFORMATION);
+	            alert.setContentText("Society Member Created Successfully");
+	            alert.setHeaderText("Success");
+	            alert.showAndWait();
+	        }
+	        else
+	        {
+	            alert=new Alert(Alert.AlertType.ERROR);
+	            alert.setContentText("Society Member Created Successfully");
+	            alert.setHeaderText("Success");
+	            alert.showAndWait();
+	        }
         }
     }
     

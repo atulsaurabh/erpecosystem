@@ -14,6 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -30,16 +33,18 @@ public class SocietyMember implements Serializable
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
    private int userid;
-   @NotNull
-   @NotEmpty
+   @NotNull(message="First name can not be null")
+   @NotEmpty(message="First name can not be empty")
+   @NotBlank(message="First name can not be blank")
    private String firstname;
-   @NotNull
-   @NotEmpty
+   @NotNull(message="Last name can not be null")
+   @NotEmpty(message="Last name can not be empty")
+   @NotBlank(message="Last name can not be blank")
    private String lastname;
    
    private char housetype;
    private int housenumber;
-   @Size(min=10,max=10)
+   @Size(min=10,max=10,message="Mobile number can not less than 10 digits")
    private String mobilenumber;
    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
    @JoinTable(name = "members_roles",
@@ -47,12 +52,15 @@ public class SocietyMember implements Serializable
            inverseJoinColumns = @JoinColumn(name="role")
    )
    private Set<MemberRole> memberRoles=new HashSet<>();
-   @NotEmpty
-   @NotNull
+   @NotNull(message="User name can not be null")
+   @NotEmpty(message="User name can not be empty")
+   @NotBlank(message="User name can not be blank")
    private String username;
-   @NotEmpty
-   @NotNull
-   @Size(max=8,min=4)
+   @NotNull(message="Password can not be null")
+   @NotEmpty(message="Password can not be empty")
+   @NotBlank(message="Password can not be blank")
+   @Min(value=4,message="Password length can not be less than 4")
+   @Max(value=8,message="password length can not be less than 8")
    private String passphrase;
    private String accountstatus;
    @Column(length = 400)

@@ -16,11 +16,11 @@ public class NodeAndController
    private Parent parent;
    private Object controller;
 
-    public Parent getParent() {
+    public Parent getNode() {
         return parent;
     }
 
-    public void setParent(Parent parent) {
+    public void setNode(Parent parent) {
         this.parent = parent;
     }
 

@@ -10,6 +10,7 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import net.dlinkddns.atulsaurabh.hasselfreelogger.api.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public final class CustomFXMLLoader
             NodeAndController nodeAndController = new NodeAndController();
             Parent parent=fXMLLoader.load();
             Object controller=fXMLLoader.getController();
-            nodeAndController.setParent(parent);
+            nodeAndController.setNode(parent);
             nodeAndController.setController(controller);
             return nodeAndController;
         } catch (Exception e) {
@@ -67,18 +68,43 @@ public final class CustomFXMLLoader
     }
     
     
-    public final Stage createStage(String UIName,String key)
+    public final Stage createStage(String UIName,String titleKey)
     {
-        Stage stage  = new Stage();
-        stage.setTitle(erpUtility.resolvKey(key));
+        Stage stage  = createNewStage(titleKey, null);
         stage.setScene(new Scene(load(UIName)));
         return stage;
     }
     
-    public final Stage createStage(Parent parent,String key)
+    public final Stage createStage(String UIName,String titleKey,String iconKey)
+    {
+        Stage stage  = createNewStage(titleKey, iconKey);
+        stage.setScene(new Scene(load(UIName)));
+        return stage;
+    }
+    
+    private final Stage createNewStage(String titleKey,String iconKey)
     {
     	Stage stage = new Stage();
-    	stage.setTitle(erpUtility.resolvKey(key));
+    	stage.setTitle(erpUtility.resolvKey(titleKey));
+    	if(iconKey != null)
+    	{
+    		String fileName = erpUtility.resolvKey(iconKey);
+    		stage.getIcons().add(new Image(getClass().getResource(GUIInfo.IMAGE_HOME+fileName).toExternalForm()));
+    	}
+    	return stage;
+    }
+    
+    
+    public final Stage createStage(Parent parent,String titleKey)
+    {
+    	Stage stage = createNewStage(titleKey, null);
+    	stage.setScene(new Scene(parent));
+    	return stage;
+    }
+    
+    public final Stage createStage(Parent parent,String titleKey,String iconKey)
+    {
+    	Stage stage = createNewStage(titleKey, iconKey);
     	stage.setScene(new Scene(parent));
     	return stage;
     }

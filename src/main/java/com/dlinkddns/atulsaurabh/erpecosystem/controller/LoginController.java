@@ -25,6 +25,7 @@ public class LoginController
     @FXML
     private JFXPasswordField passwordTextBox;
     
+    
     @FXML
     public void performLogin(ActionEvent actionEvent)
     {

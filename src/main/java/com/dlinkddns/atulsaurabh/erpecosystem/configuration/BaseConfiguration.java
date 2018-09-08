@@ -6,16 +6,15 @@
 package com.dlinkddns.atulsaurabh.erpecosystem.configuration;
 
 import com.dlinkddns.atulsaurabh.erpecosystem.loader.CustomFXMLLoader;
+import com.dlinkddns.atulsaurabh.erpecosystem.loader.GraphicsSupplier;
 import com.dlinkddns.atulsaurabh.erpecosystem.util.ErpUtility;
 import com.dlinkddns.atulsaurabh.erpecosystem.util.ErpUtilityImpl;
-import com.jfoenix.validation.ValidationFacade;
+
 
 import java.io.InputStream;
 import java.util.Properties;
 
-import javax.validation.Validation;
 import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 
 import net.dlinkddns.atulsaurabh.hasselfreelogger.api.Logger;
 import net.dlinkddns.atulsaurabh.hasselfreelogger.impl.HasselFreeLogger;
@@ -28,6 +27,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 
 
 /**
@@ -84,5 +84,20 @@ public class BaseConfiguration
     public Validator validator()
     {
     	return new LocalValidatorFactoryBean();
+    	
+    }
+    
+    @Bean
+    public GraphicsSupplier graphicsSupplier()
+    {
+    	return new GraphicsSupplier();
+    }
+    
+    @Bean
+    public MethodValidationPostProcessor methodValidationPostProcessor()
+    {
+    	MethodValidationPostProcessor postProcessor = new MethodValidationPostProcessor();
+    	postProcessor.setValidator(validator());
+    	return postProcessor;
     }
 }

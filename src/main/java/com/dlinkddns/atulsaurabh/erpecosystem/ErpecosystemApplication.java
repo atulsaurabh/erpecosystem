@@ -5,6 +5,7 @@ import com.dlinkddns.atulsaurabh.erpecosystem.loader.GUIInfo;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -78,6 +79,9 @@ public class ErpecosystemApplication extends Application implements ApplicationR
             Parent parent = customFXMLLoader.load(GUIInfo.GUI_LOGIN);
             primaryStage.setScene(new Scene(parent));
             primaryStage.setMaximized(false);
+            String imageIcon=this.getClass().getResource("/images/logo.jpg").toExternalForm();
+            System.out.println(imageIcon);
+           primaryStage.getIcons().add(new Image(imageIcon));
             primaryStage.setFullScreen(false);
             primaryStage.setResizable(false);
             primaryStage.show();

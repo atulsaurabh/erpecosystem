@@ -8,6 +8,7 @@ package com.dlinkddns.atulsaurabh.erpecosystem.controller;
 
 import com.dlinkddns.atulsaurabh.erpecosystem.loader.CustomFXMLLoader;
 import com.dlinkddns.atulsaurabh.erpecosystem.loader.GUIInfo;
+import com.dlinkddns.atulsaurabh.erpecosystem.loader.GraphicsSupplier;
 import com.dlinkddns.atulsaurabh.erpecosystem.loader.NodeAndController;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,6 +19,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -38,9 +40,15 @@ public class AdminDashboardController implements Initializable {
     private VBox sidepane;
     @FXML
     private AnchorPane container;
+    
+    @FXML
+    private MenuItem newUser,updateUser,deleteUser,activateUser;
 
     @Autowired
     private CustomFXMLLoader customFXMLLoader;
+    
+    @Autowired
+    private GraphicsSupplier graphicsSupplier;
 
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
@@ -55,6 +63,7 @@ public class AdminDashboardController implements Initializable {
                 });
             }
         }
+    	newUser.setGraphic(graphicsSupplier.iconGraphics("window.dashboard.new.menuitem.icon"));
 
     }
 
@@ -62,9 +71,9 @@ public class AdminDashboardController implements Initializable {
     public void showUserCreationForm(ActionEvent event) {
        NodeAndController nodeAndController = customFXMLLoader.loadFx(GUIInfo.GUI_CREATE_USER_FORM);
         UserAddFormController controller = (UserAddFormController) nodeAndController.getController();
-        controller.setParent(nodeAndController.getParent());
+        controller.setParent(nodeAndController.getNode());
        //container.getChildren().add(nodeAndController.getParent());
-      Stage stage=customFXMLLoader.createStage(nodeAndController.getParent(), "window.useradd.title");
+      Stage stage=customFXMLLoader.createStage(nodeAndController.getNode(), "window.useradd.title","window.useradd.icon");
       stage.setResizable(false);
       stage.setMaximized(false);
       stage.show();

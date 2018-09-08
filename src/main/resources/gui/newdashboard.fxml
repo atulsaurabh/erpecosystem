@@ -124,23 +124,23 @@
         <menus>
           <Menu mnemonicParsing="false" text="User">
             <items>
-              <MenuItem onAction="#showUserCreationForm" text="New">
+              <MenuItem fx:id="newUser" onAction="#showUserCreationForm" text="New">
                      <accelerator>
                         <KeyCodeCombination alt="DOWN" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
-                  <MenuItem text="Update">
+                  <MenuItem fx:id="updateUser" text="Update">
                      <accelerator>
                         <KeyCodeCombination alt="DOWN" code="U" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
-                  <MenuItem text="Delete">
+                  <MenuItem fx:id="deleteUser" text="Delete">
                      <accelerator>
                         <KeyCodeCombination alt="DOWN" code="D" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem text="Activation">
+                  <MenuItem fx:id="activateUser" text="Activation">
                      <accelerator>
                         <KeyCodeCombination alt="DOWN" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
