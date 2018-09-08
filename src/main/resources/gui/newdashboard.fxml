@@ -6,7 +6,7 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
-<?import com.dlinkddns.atulsaurabh.erpecosystem.custom.ErpMenuBar?>
+<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.effect.DropShadow?>
@@ -120,7 +120,7 @@
             <DropShadow radius="26.325" width="86.3" />
          </effect>
 </VBox>
-      <ErpMenuBar fx:id="adminMenuBar" layoutY="-2.0" prefHeight="32.0" prefWidth="932.0" styleClass="menubar" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <MenuBar fx:id="adminMenuBar" layoutY="-2.0" prefHeight="32.0" prefWidth="932.0" styleClass="menubar" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="User">
             <items>
@@ -150,12 +150,7 @@
                   <KeyCodeCombination alt="ANY" code="U" control="UP" meta="UP" shift="UP" shortcut="UP" />
                </accelerator>
           </Menu>
-          <Menu mnemonicParsing="false" text="Plugins">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#openServiceRegistryForm" text="Upload" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Modules">
+          <Menu mnemonicParsing="false" text="Edit">
               <items>
                   
               </items>
@@ -166,6 +161,6 @@
             </items>
           </Menu>
         </menus>
-      </ErpMenuBar>
+      </MenuBar>
    </children>
 </AnchorPane>

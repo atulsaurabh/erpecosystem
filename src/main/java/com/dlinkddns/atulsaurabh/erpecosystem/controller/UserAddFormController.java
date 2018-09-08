@@ -114,27 +114,7 @@ public class UserAddFormController {
         accountStatus.setItems(accountStatuses);
     }
     
-    @FXML
-    public void closeWindow(MouseEvent mouseEvent)
-    {
-       AnchorPane box=(AnchorPane)parent.getParent();
-       box.getChildren().remove(parent);
-    }
     
-    @FXML
-    public void windowDragged(MouseEvent mouseDragEvent)
-    {
-        AnchorPane box = (AnchorPane)parent.getParent();
-        parent.setManaged(false);
-        double newX=mouseDragEvent.getX()+parent.getTranslateX();
-        double newY = mouseDragEvent.getY()+parent.getTranslateY();
-        /*if(newX + parent.getBoundsInLocal().getWidth() >= box.getWidth() || 
-                newY + parent.getBoundsInLocal().getHeight() >= box.getHeight())
-            return;*/
-        parent.setTranslateX(newX);
-        parent.setTranslateY(newY);
-        mouseDragEvent.consume();
-    }
     
     @FXML
     public void createUser(ActionEvent actionEvent)
@@ -179,7 +159,7 @@ public class UserAddFormController {
                 fileChooser.setInitialFileName(initialFileName + ".key");
             else
                 fileChooser.setInitialFileName("default.key"); 
-            File keyFilePath=fileChooser.showSaveDialog(parent.getParent().getScene().getWindow());
+            File keyFilePath=fileChooser.showSaveDialog(parent.getScene().getWindow());
             if(keyFilePath != null)
             {
                 FileOutputStream fos = new FileOutputStream(keyFilePath);

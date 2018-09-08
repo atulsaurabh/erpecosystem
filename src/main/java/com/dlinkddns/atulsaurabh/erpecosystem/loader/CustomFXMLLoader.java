@@ -75,6 +75,14 @@ public final class CustomFXMLLoader
         return stage;
     }
     
+    public final Stage createStage(Parent parent,String key)
+    {
+    	Stage stage = new Stage();
+    	stage.setTitle(erpUtility.resolvKey(key));
+    	stage.setScene(new Scene(parent));
+    	return stage;
+    }
+    
     public final void setTitle(Stage stage,String key)
     {
         stage.setTitle(erpUtility.resolvKey(key));

@@ -14,6 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -27,10 +30,16 @@ public class SocietyMember implements Serializable
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
    private int userid;
+   @NotNull
+   @NotEmpty
    private String firstname;
+   @NotNull
+   @NotEmpty
    private String lastname;
+   
    private char housetype;
    private int housenumber;
+   @Size(min=10,max=10)
    private String mobilenumber;
    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
    @JoinTable(name = "members_roles",
@@ -38,7 +47,12 @@ public class SocietyMember implements Serializable
            inverseJoinColumns = @JoinColumn(name="role")
    )
    private Set<MemberRole> memberRoles=new HashSet<>();
+   @NotEmpty
+   @NotNull
    private String username;
+   @NotEmpty
+   @NotNull
+   @Size(max=8,min=4)
    private String passphrase;
    private String accountstatus;
    @Column(length = 400)

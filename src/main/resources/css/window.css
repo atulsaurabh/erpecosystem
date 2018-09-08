@@ -11,8 +11,8 @@ and open the template in the editor.
 .windowTop
 {
     -fx-background-color:#689f38; 
-	-fx-background-radius:20 20 0 0;
-	-fx-border-radius:20 20 0 0;
+	/*-fx-background-radius:20 20 0 0;
+	-fx-border-radius:20 20 0 0;*/
 }
 
 .secretkeybutton
