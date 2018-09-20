@@ -5,8 +5,9 @@
  */
 package com.dlinkddns.atulsaurabh.erpecosystem.repository;
 
+
+
 import com.dlinkddns.atulsaurabh.erpecosystem.entity.SocietyMember;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface SocietyMemberRepository extends JpaRepository<SocietyMember, Integer>
+public interface SocietyMemberRepository
 {
-    
+   public boolean registerMember(SocietyMember member);
 }

@@ -18,12 +18,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class SocietyMemberServiceImpl implements SocietyMemberService{
 
-    @Autowired
-    private SocietyMemberRepository societyMemberRepository;
+  @Autowired
+  private SocietyMemberRepository societyMemberRepository;
     
     @Override
     public boolean createNewSocietyMember(SocietyMember societyMember) {
-        return societyMemberRepository.saveAndFlush(societyMember) != null;
+        return societyMemberRepository.registerMember(societyMember);
     }
     
 }

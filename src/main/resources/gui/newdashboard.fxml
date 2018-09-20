@@ -16,34 +16,40 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dlinkddns.atulsaurabh.erpecosystem.controller.AdminDashboardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dlinkddns.atulsaurabh.erpecosystem.controller.AdminDashboardController">
    <children>
-      <VBox layoutX="255.0" layoutY="34.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="680.0" prefWidth="678.0" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="255.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="34.0">
+      <VBox layoutX="173.0" layoutY="34.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="706.0" prefWidth="760.0" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="173.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="34.0">
          <children>
             <AnchorPane fx:id="container" prefHeight="618.0" prefWidth="678.0" />
          </children></VBox>
-      <HBox alignment="BOTTOM_RIGHT" layoutY="711.0" prefHeight="50.0" prefWidth="932.0" styleClass="footer" stylesheets="@../css/dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox alignment="BOTTOM_RIGHT" layoutY="711.0" prefHeight="20.0" prefWidth="932.0" styleClass="footer" stylesheets="@../css/dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <effect>
             <DropShadow height="52.1" radius="20.884999999999998" width="33.44" />
          </effect>
          <children>
             <Label prefHeight="50.0" prefWidth="276.0" text="Powered By:  Suyojan Systems" textFill="WHITE">
                <font>
-                  <Font name="Ebrima" size="20.0" />
+                  <Font size="14.0" />
                </font>
             </Label>
          </children>
       </HBox>
-     <VBox fx:id="sidepane" layoutY="34.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="256.0" styleClass="sidepanel" stylesheets="@../css/dashboard.css" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="34.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+     <VBox fx:id="sidepane" layoutY="34.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="706.0" prefWidth="173.0" styleClass="sidepanel" stylesheets="@../css/dashboard.css" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="34.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label id="adminLabel" prefHeight="85.0" prefWidth="256.0" stylesheets="@../css/dashboard.css" text="Admin Panel" />
+      <Label id="adminLabel" prefHeight="92.0" prefWidth="173.0" stylesheets="@../css/dashboard.css" text="Admin Panel">
+               <font>
+                  <Font size="4.0" />
+               </font></Label>
       <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="332.0">
          <children>
-            <FontAwesomeIconView id="searchIcon" glyphName="SEARCH" size="20.0" />
+            <FontAwesomeIconView id="searchIcon" glyphName="SEARCH" size="10.0" />
             <JFXTextField prefHeight="40.0" prefWidth="303.0" promptText="Search" styleClass="searchBar" stylesheets="@../css/dashboard.css" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets left="10.0" />
                </padding>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
             </JFXTextField>
          </children>
          <padding>
@@ -57,6 +63,9 @@
                <padding>
                   <Insets left="10.0" />
                </padding>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
             </Label>
          </children>
          <padding>
@@ -65,7 +74,7 @@
       </HBox>
       <HBox accessibleText="useroption" alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="332.0" styleClass="dashboard_label" stylesheets="@../css/dashboard.css">
          <children>
-            <FontAwesomeIconView glyphName="USER" size="20" />
+            <FontAwesomeIconView glyphName="USER" size="15" />
             <Hyperlink accessibleText="user" prefHeight="29.0" prefWidth="314.0" styleClass="dashboard_options" stylesheets="@../css/dashboard.css" text="User Management" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets left="10.0" />
@@ -78,7 +87,7 @@
       </HBox>
       <HBox accessibleText="useroption" alignment="CENTER_LEFT" layoutX="10.0" layoutY="196.0" prefHeight="46.0" prefWidth="332.0" styleClass="dashboard_label" stylesheets="@../css/dashboard.css">
          <children>
-            <FontAwesomeIconView glyphName="CALENDAR" size="20" />
+            <FontAwesomeIconView glyphName="CALENDAR" size="15" />
             <Hyperlink prefHeight="29.0" prefWidth="314.0" styleClass="dashboard_options" stylesheets="@../css/dashboard.css" text="Topic Management" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets left="10.0" />
@@ -91,7 +100,7 @@
       </HBox>
       <HBox accessibleText="useroption" alignment="CENTER_LEFT" layoutX="10.0" layoutY="242.0" prefHeight="46.0" prefWidth="332.0" styleClass="dashboard_label" stylesheets="@../css/dashboard.css">
          <children>
-            <FontAwesomeIconView glyphName="BOLT" size="20" />
+            <FontAwesomeIconView glyphName="BOLT" size="15" />
             <Hyperlink prefHeight="29.0" prefWidth="314.0" styleClass="dashboard_options" stylesheets="@../css/dashboard.css" text="User Management" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets left="10.0" />
@@ -104,7 +113,7 @@
       </HBox>
       <HBox accessibleText="useroption" alignment="CENTER_LEFT" layoutX="10.0" layoutY="288.0" prefHeight="46.0" prefWidth="332.0" styleClass="dashboard_label" stylesheets="@../css/dashboard.css">
          <children>
-            <FontAwesomeIconView glyphName="USER" size="20" />
+            <FontAwesomeIconView glyphName="USER" size="15" />
             <Hyperlink prefHeight="29.0" prefWidth="314.0" styleClass="dashboard_options" stylesheets="@../css/dashboard.css" text="User Management" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets left="10.0" />
@@ -120,7 +129,7 @@
             <DropShadow radius="26.325" width="86.3" />
          </effect>
 </VBox>
-      <MenuBar fx:id="adminMenuBar" layoutY="-2.0" prefHeight="32.0" prefWidth="932.0" styleClass="menubar" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <MenuBar fx:id="adminMenuBar" layoutY="-2.0" prefHeight="10.0" prefWidth="932.0" styleClass="menubar" stylesheets="@../css/dashboard.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="User">
             <items>

@@ -40,7 +40,8 @@ import org.springframework.validation.beanvalidation.MethodValidationPostProcess
 @ComponentScan(basePackages = {"com.dlinkddns.atulsaurabh.erpecosystem.loader"})
 @PropertySources(
         {
-            @PropertySource("classpath:window.properties")
+            @PropertySource("classpath:window.properties"),
+            @PropertySource("classpath:restendpoints.properties")
         }
 )
 public class BaseConfiguration 

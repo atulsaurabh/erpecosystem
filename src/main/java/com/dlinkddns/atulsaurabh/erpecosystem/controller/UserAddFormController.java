@@ -34,6 +34,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -101,6 +102,35 @@ public class UserAddFormController {
     @Autowired
     private Validator validator;
     private Parent parent;
+    
+    
+    @FXML
+    private Label firstNameError;
+
+    @FXML
+    private Label lastNameError;
+
+    @FXML
+    private Label userNameError;
+
+    @FXML
+    private Label passPhraseError;
+
+    @FXML
+    private Label mobileNumberError;
+
+    @FXML
+    private Label accountStatusError;
+
+    @FXML
+    private Label securityKeyError;
+
+    @FXML
+    private Label houseTypeError;
+
+    @FXML
+    private Label houseNumberError;
+    
 
     public void setParent(Parent parent) {
         this.parent = parent;
@@ -127,39 +157,83 @@ public class UserAddFormController {
     public void createUser(ActionEvent actionEvent)
     {
         SocietyMember societyMember=buildSocietyMember();
-        Set<ConstraintViolation<SocietyMember>>  validMember = validator.validate(societyMember);
-        if(!validMember.isEmpty())
-        {
-        	String messages ="";
-        	for(ConstraintViolation<SocietyMember> constraintViolation : validMember)
-        	{
-        		messages += constraintViolation.getMessage()+"\n";
-        	}
-        	Alert alert = new Alert(Alert.AlertType.ERROR);
-        	alert.setContentText(messages);
-        	alert.setHeaderText("Error in Validation");
-        	alert.show();
+        if(validate(societyMember)) {
+            Alert alert = null;
+            if (societyMemberService.createNewSocietyMember(societyMember)) {
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("Society Member Created Successfully");
+                alert.setHeaderText("Success");
+                alert.showAndWait();
+            } else {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Society Member Created Successfully");
+                alert.setHeaderText("Success");
+                alert.showAndWait();
+            }
         }
+
+    }
+
+    private boolean validate(SocietyMember societyMember)
+    {
+        setAllMessageBlank();
+        Set<ConstraintViolation<SocietyMember>>  validMember = validator.validate(societyMember);
+        if (validMember.isEmpty())
+            return true;
         else
         {
-	        Alert alert=null;
-	        if(societyMemberService.createNewSocietyMember(societyMember))
-	        {
-	            alert=new Alert(Alert.AlertType.INFORMATION);
-	            alert.setContentText("Society Member Created Successfully");
-	            alert.setHeaderText("Success");
-	            alert.showAndWait();
-	        }
-	        else
-	        {
-	            alert=new Alert(Alert.AlertType.ERROR);
-	            alert.setContentText("Society Member Created Successfully");
-	            alert.setHeaderText("Success");
-	            alert.showAndWait();
-	        }
+            for(ConstraintViolation<SocietyMember> constraintViolation : validMember)
+            {
+                constraintViolation.getPropertyPath().forEach(path -> {
+                    switch(path.getName())
+                    {
+                        case "firstname":
+                            firstNameError.setText(constraintViolation.getMessage());
+                            break;
+                        case "lastname":
+                            lastNameError.setText(constraintViolation.getMessage());
+                            break;
+                        case "username":
+                            userNameError.setText(constraintViolation.getMessage());
+                            break;
+                        case "passphrase":
+                            passPhraseError.setText(constraintViolation.getMessage());
+                            break;
+                        case "mobilenumber":
+                            mobileNumberError.setText(constraintViolation.getMessage());
+                            break;
+                        case "housenumber":
+                            houseNumberError.setText(constraintViolation.getMessage());
+                            break;
+                        case "housetype":
+                            houseTypeError.setText(constraintViolation.getMessage());
+                            break;
+                        case "accountstatus":
+                            accountStatusError.setText(constraintViolation.getMessage());
+                            break;
+                        case "publickey":
+                            securityKeyError.setText(constraintViolation.getMessage());
+                            break;
+                    }
+                });
+            }
+            return false;
         }
     }
-    
+
+    private void setAllMessageBlank()
+    {
+        firstNameError.setText("");
+        lastNameError.setText("");
+        userNameError.setText("");
+        passPhraseError.setText("");
+        mobileNumberError.setText("");
+        accountStatusError.setText("");
+        houseTypeError.setText("");
+        houseNumberError.setText("");
+        securityKeyError.setText("");
+    }
+
     @FXML
     public void createAndSaveKey(ActionEvent actionEvent)
     {
@@ -215,8 +289,15 @@ public class UserAddFormController {
         SocietyMember member=new SocietyMember();
         member.setFirstname(firstName.getText());
         member.setLastname(lastName.getText());
-        member.setHousetype(houseType.getSelectionModel().getSelectedItem().charAt(0));
-        member.setHousenumber(houseNumber.getSelectionModel().getSelectedItem());
+        member.setHousetype(houseType.getSelectionModel().getSelectedItem());
+        Integer hNumber=houseNumber.getSelectionModel().getSelectedItem();
+        if(hNumber == null)
+        {
+            member.setHousenumber(0);
+        }
+        else {
+            member.setHousenumber(hNumber);
+        }
         member.setUsername(userName.getText());
         member.setPassphrase(passphrase.getText());
         member.setPublickey(securityKey.getText());
@@ -229,6 +310,8 @@ public class UserAddFormController {
         else if(this.member.isSelected())
             member.getMemberRoles().add(new MemberRole(RoleInfo.SOCIETY_MEMBER));
         member.setMobilenumber(mobileNumber.getText());
+        member.setAccountstatus(accountStatus.getSelectionModel().getSelectedItem());
+        member.setPublickey(securityKey.getText());
         return member;
     }
 }

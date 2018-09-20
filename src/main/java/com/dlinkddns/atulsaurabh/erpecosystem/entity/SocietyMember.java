@@ -4,34 +4,17 @@ package com.dlinkddns.atulsaurabh.erpecosystem.entity;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 /**
  *
  * @author Atul Saurabh
  */
 
-@Entity
 public class SocietyMember implements Serializable
 {
    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
    private int userid;
    @NotNull(message="First name can not be null")
    @NotEmpty(message="First name can not be empty")
@@ -41,16 +24,14 @@ public class SocietyMember implements Serializable
    @NotEmpty(message="Last name can not be empty")
    @NotBlank(message="Last name can not be blank")
    private String lastname;
-   
-   private char housetype;
+   @Pattern(regexp = "^[AB]{1}$",message = "Select house type")
+   @NotNull(message = "Select house type")
+   private String housetype;
+   @Positive(message = "Select house number ")
    private int housenumber;
    @Size(min=10,max=10,message="Mobile number can not less than 10 digits")
    private String mobilenumber;
-   @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-   @JoinTable(name = "members_roles",
-           joinColumns = @JoinColumn(name = "member"),
-           inverseJoinColumns = @JoinColumn(name="role")
-   )
+
    private Set<MemberRole> memberRoles=new HashSet<>();
    @NotNull(message="User name can not be null")
    @NotEmpty(message="User name can not be empty")
@@ -59,11 +40,12 @@ public class SocietyMember implements Serializable
    @NotNull(message="Password can not be null")
    @NotEmpty(message="Password can not be empty")
    @NotBlank(message="Password can not be blank")
-   @Min(value=4,message="Password length can not be less than 4")
-   @Max(value=8,message="password length can not be less than 8")
+   @Size(min = 4,max = 8,message = "Password length can not be less than 4 and more than 8")
    private String passphrase;
+   @NotNull(message = "Select account status")
    private String accountstatus;
-   @Column(length = 400)
+
+   @NotEmpty(message = "Generate a key for the user")
    private String publickey;
 
     public String getPublickey() {
@@ -90,11 +72,11 @@ public class SocietyMember implements Serializable
         this.lastname = lastname;
     }
 
-    public char getHousetype() {
+    public String getHousetype() {
         return housetype;
     }
 
-    public void setHousetype(char housetype) {
+    public void setHousetype(String housetype) {
         this.housetype = housetype;
     }
 

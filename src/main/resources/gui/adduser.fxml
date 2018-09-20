@@ -16,52 +16,100 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="754.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dlinkddns.atulsaurabh.erpecosystem.controller.UserAddFormController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="502.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dlinkddns.atulsaurabh.erpecosystem.controller.UserAddFormController">
    <children>
-      <ScrollPane layoutX="2.0" layoutY="43.0" prefHeight="704.0" prefWidth="724.0">
+      <ScrollPane layoutX="2.0" layoutY="43.0" prefHeight="521.0" prefWidth="497.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="790.0" prefWidth="702.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="691.0" prefWidth="491.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="152.0" layoutY="14.0" prefHeight="35.0" prefWidth="370.0" text="User Informations">
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="56.0" layoutY="14.0" prefHeight="35.0" prefWidth="370.0" text="User Informations">
                      <font>
                         <Font name="System Bold" size="26.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="firstName" layoutX="110.0" layoutY="100.0" prefHeight="35.0" prefWidth="488.0" promptText="FIRST NAME">
+                  <JFXTextField fx:id="firstName" layoutX="59.0" layoutY="100.0" prefHeight="35.0" prefWidth="358.0" promptText="FIRST NAME">
                      <effect>
                         <SepiaTone />
                      </effect>
                   </JFXTextField>
-                  <JFXTextField fx:id="lastName" layoutX="110.0" layoutY="157.0" prefHeight="36.0" prefWidth="488.0" promptText="LAST NAME" />
-                  <JFXComboBox fx:id="houseType" layoutX="110.0" layoutY="215.0" prefHeight="36.0" prefWidth="124.0" promptText="HOUSE TYPE" />
-                  <JFXComboBox fx:id="houseNumber" layoutX="260.0" layoutY="215.0" prefHeight="36.0" prefWidth="337.0" promptText="HOUSE NUMBER" />
-                  <JFXTextField fx:id="userName" layoutX="110.0" layoutY="279.0" prefHeight="36.0" prefWidth="488.0" promptText="USER NAME" />
-                  <JFXPasswordField fx:id="passphrase" layoutX="110.0" layoutY="340.0" prefHeight="36.0" prefWidth="488.0" promptText="PASSPHRASE" />
-                  <JFXCheckBox fx:id="administrator" layoutX="110.0" layoutY="545.0" prefHeight="36.0" prefWidth="169.0" text="ADMINISTRATOR" />
-                  <JFXTextArea fx:id="securityKey" layoutX="110.0" layoutY="408.0" prefHeight="99.0" prefWidth="393.0" promptText="SECURITY KEY" />
-                  <HBox alignment="CENTER_LEFT" layoutX="279.0" layoutY="545.0" prefHeight="36.0" prefWidth="332.0">
+                  <JFXTextField fx:id="lastName" layoutX="59.0" layoutY="150.0" prefHeight="36.0" prefWidth="360.0" promptText="LAST NAME" />
+                  <JFXComboBox fx:id="houseType" layoutX="58.0" layoutY="202.0" prefHeight="36.0" prefWidth="103.0" promptText="HOUSE TYPE" />
+                  <JFXComboBox fx:id="houseNumber" layoutX="208.0" layoutY="202.0" prefHeight="36.0" prefWidth="215.0" promptText="HOUSE NUMBER" />
+                  <JFXTextField fx:id="userName" layoutX="57.0" layoutY="254.0" prefHeight="36.0" prefWidth="371.0" promptText="USER NAME" />
+                  <JFXPasswordField fx:id="passphrase" layoutX="58.0" layoutY="302.0" prefHeight="36.0" prefWidth="368.0" promptText="PASSPHRASE" />
+                  <JFXCheckBox fx:id="administrator" layoutX="59.0" layoutY="470.0" prefHeight="36.0" prefWidth="80.0" text="ADMIN" />
+                  <JFXTextArea fx:id="securityKey" layoutX="58.0" layoutY="354.0" prefHeight="99.0" prefWidth="286.0" promptText="SECURITY KEY" />
+                  <HBox alignment="CENTER_LEFT" layoutX="151.0" layoutY="472.0" prefHeight="36.0" prefWidth="284.0">
                      <children>
-                        <JFXRadioButton fx:id="secretary" prefHeight="36.0" prefWidth="112.0" text="SECRETARY">
+                        <JFXRadioButton fx:id="secretary" prefHeight="36.0" prefWidth="112.0" text="SEC">
                            <toggleGroup>
                               <ToggleGroup fx:id="ROLES" />
                            </toggleGroup>
                         </JFXRadioButton>
                         <JFXRadioButton fx:id="coord" prefHeight="36.0" prefWidth="112.0" text="COORD" toggleGroup="$ROLES" />
-                        <JFXRadioButton fx:id="member" prefHeight="36.0" prefWidth="111.0" selected="true" text="MEMBER" toggleGroup="$ROLES" />
+                        <JFXRadioButton fx:id="member" prefHeight="36.0" prefWidth="111.0" selected="true" text="MEM" toggleGroup="$ROLES" />
                      </children>
                   </HBox>
-                  <JFXComboBox fx:id="accountStatus" layoutX="110.0" layoutY="605.0" prefHeight="36.0" prefWidth="488.0" promptText="ACCOUNT STATUS" />
-                  <JFXButton buttonType="RAISED" layoutX="522.0" layoutY="408.0" onAction="#createAndSaveKey" prefHeight="102.0" prefWidth="85.0" styleClass="secretkeybutton" stylesheets="@../css/window.css" text="GENERATE">
+                  <JFXComboBox fx:id="accountStatus" layoutX="60.0" layoutY="507.0" prefHeight="36.0" prefWidth="381.0" promptText="ACCOUNT STATUS" />
+                  <JFXButton buttonType="RAISED" layoutX="358.0" layoutY="355.0" onAction="#createAndSaveKey" prefHeight="101.0" prefWidth="77.0" styleClass="secretkeybutton" stylesheets="@../css/window.css" text="CREATE">
                      <effect>
                         <DropShadow height="41.21" radius="19.7175" width="39.66" />
                      </effect>
                   </JFXButton>
-                  <JFXButton defaultButton="true" layoutX="283.0" layoutY="714.0" onAction="#createUser" prefHeight="64.0" prefWidth="164.0" styleClass="secretkeybutton" stylesheets="@../css/window.css" text="CREATE USER" />
-                  <JFXTextField fx:id="mobileNumber" layoutX="106.0" layoutY="667.0" prefHeight="35.0" prefWidth="488.0" promptText="MOBILE NUMBER" />
+                  <JFXButton defaultButton="true" layoutX="178.0" layoutY="616.0" onAction="#createUser" prefHeight="64.0" prefWidth="164.0" styleClass="secretkeybutton" stylesheets="@../css/window.css" text="CREATE USER" />
+                  <JFXTextField fx:id="mobileNumber" layoutX="61.0" layoutY="555.0" prefHeight="35.0" prefWidth="383.0" promptText="MOBILE NUMBER" />
+                  <Label fx:id="firstNameError" layoutX="59.0" layoutY="135.0" prefHeight="16.0" prefWidth="357.0" textFill="#f40606">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lastNameError" layoutX="59.0" layoutY="186.0" prefHeight="16.0" prefWidth="361.0" textFill="#f40606">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="userNameError" layoutX="57.0" layoutY="290.0" prefHeight="16.0" prefWidth="371.0" textFill="#f40606">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="passPhraseError" layoutX="57.0" layoutY="338.0" prefHeight="16.0" prefWidth="369.0" textFill="#f40606">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="mobileNumberError" layoutX="61.0" layoutY="590.0" prefHeight="16.0" prefWidth="384.0" textFill="#f40606">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="accountStatusError" layoutX="57.0" layoutY="543.0" prefHeight="16.0" prefWidth="384.0" textFill="#f40606">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="securityKeyError" layoutX="56.0" layoutY="456.0" prefHeight="16.0" prefWidth="292.0" textFill="#f04606">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="houseTypeError" layoutX="57.0" layoutY="238.0" prefHeight="16.0" prefWidth="100.0" textFill="#f04606">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="houseNumberError" layoutX="208.0" layoutY="238.0" prefHeight="16.0" prefWidth="216.0" textFill="#f04606">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
                </children></AnchorPane>
         </content>
+         <effect>
+            <DropShadow />
+         </effect>
       </ScrollPane>
-      <HBox alignment="CENTER_RIGHT" layoutX="-10.0" prefHeight="43.0" prefWidth="735.0" styleClass="windowTop" stylesheets="@../css/window.css" />
+      <HBox alignment="CENTER_RIGHT" layoutX="-10.0" prefHeight="43.0" prefWidth="512.0" styleClass="windowTop" stylesheets="@../css/window.css" />
    </children>
    <effect>
       <DropShadow height="42.77" radius="27.8825" width="70.76" />

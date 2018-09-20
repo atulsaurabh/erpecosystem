@@ -11,14 +11,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="767.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dlinkddns.atulsaurabh.erpecosystem.controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="431.0" prefWidth="522.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dlinkddns.atulsaurabh.erpecosystem.controller.LoginController">
    <children>
-      <Pane layoutX="9.0" layoutY="12.0" prefHeight="464.0" prefWidth="749.0" styleClass="loginWindow" stylesheets="@../css/styles.css">
+      <Pane layoutX="9.0" layoutY="12.0" prefHeight="409.0" prefWidth="504.0" styleClass="loginWindow" stylesheets="@../css/styles.css">
          <effect>
             <DropShadow height="36.55" radius="15.442499999999999" width="27.22" />
          </effect>
          <children>
-            <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="91.0" layoutY="336.0" onAction="#performLogin" prefHeight="51.0" prefWidth="189.0" ripplerFill="WHITE" styleClass="buttonColor" stylesheets="@../css/styles.css" text="Login" textFill="WHITE">
+            <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="91.0" layoutY="336.0" onAction="#performLogin" prefHeight="35.0" prefWidth="126.0" ripplerFill="WHITE" styleClass="buttonColor" stylesheets="@../css/styles.css" text="Login" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="21.0" />
                </font>
@@ -26,33 +26,33 @@
                   <DropShadow radius="15.4425" width="42.77" />
                </effect>
             </JFXButton>
-            <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="457.0" layoutY="336.0" onAction="#performReset" prefHeight="51.0" prefWidth="189.0" styleClass="buttonColor" stylesheets="@../css/styles.css" text="Reset" textFill="WHITE">
+            <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="340.0" layoutY="336.0" onAction="#performReset" prefHeight="40.0" prefWidth="126.0" styleClass="buttonColor" stylesheets="@../css/styles.css" text="Reset" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="21.0" />
                </font>
             </JFXButton>
-            <HBox alignment="CENTER_LEFT" layoutX="80.0" layoutY="100.0" prefHeight="51.0" prefWidth="548.0">
+            <HBox alignment="CENTER_LEFT" layoutX="80.0" layoutY="116.0" prefHeight="35.0" prefWidth="376.0">
                <children>
-                  <FontAwesomeIconView id="searchIcon" glyphName="USER" size="45" />
-                  <JFXTextField fx:id="userNameTextBox" prefHeight="41.0" prefWidth="494.0" promptText="User Name" HBox.hgrow="ALWAYS">
+                  <FontAwesomeIconView id="searchIcon" glyphName="USER" size="25" />
+                  <JFXTextField fx:id="userNameTextBox" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="30.0" promptText="User Name" HBox.hgrow="ALWAYS">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                      <font>
-                        <Font size="21.0" />
+                        <Font size="15.0" />
                      </font>
                   </JFXTextField>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="80.0" layoutY="207.0" prefHeight="51.0" prefWidth="548.0">
+            <HBox alignment="CENTER_LEFT" layoutX="80.0" layoutY="207.0" prefHeight="51.0" prefWidth="376.0">
                <children>
-                  <FontAwesomeIconView id="searchIcon" glyphName="KEY" rotate="-133.7" size="45" />
-                  <JFXPasswordField fx:id="passwordTextBox" prefHeight="42.0" prefWidth="503.0" promptText="Password" HBox.hgrow="ALWAYS">
+                  <FontAwesomeIconView id="searchIcon" glyphName="KEY" rotate="-133.7" size="25" />
+                  <JFXPasswordField fx:id="passwordTextBox" prefHeight="42.0" prefWidth="254.0" promptText="Password" HBox.hgrow="ALWAYS">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                      <font>
-                        <Font size="21.0" />
+                        <Font size="15.0" />
                      </font>
                   </JFXPasswordField>
                </children>
