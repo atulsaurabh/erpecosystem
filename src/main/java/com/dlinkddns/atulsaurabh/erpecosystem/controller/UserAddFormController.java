@@ -5,6 +5,7 @@
  */
 package com.dlinkddns.atulsaurabh.erpecosystem.controller;
 
+import com.dlinkddns.atulsaurabh.erpecosystem.code.CodeAndMessage;
 import com.dlinkddns.atulsaurabh.erpecosystem.entity.MemberRole;
 import com.dlinkddns.atulsaurabh.erpecosystem.entity.RoleInfo;
 import com.dlinkddns.atulsaurabh.erpecosystem.entity.SocietyMember;
@@ -23,6 +24,7 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -34,6 +36,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
@@ -130,6 +133,9 @@ public class UserAddFormController {
 
     @FXML
     private Label houseNumberError;
+
+    private boolean keyFileSaved;
+    private Key privateKey;
     
 
     public void setParent(Parent parent) {
@@ -156,22 +162,62 @@ public class UserAddFormController {
     @FXML
     public void createUser(ActionEvent actionEvent)
     {
+        while(!keyFileSaved)
+        {
+            try {
+                saveKeyFile();
+            }
+            catch (IOException io)
+            {
+                logger.logFatal(this.getClass(), "Unable To Create Key File On Specified Format", io);
+                Alert alert=new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Unable to create key file in the filessytem.Kindly check the permission");
+                alert.setHeaderText("Key File Creation Fail");
+                alert.setTitle("Key File Required");
+                alert.showAndWait();
+            }
+
+        }
         SocietyMember societyMember=buildSocietyMember();
         if(validate(societyMember)) {
             Alert alert = null;
-            if (societyMemberService.createNewSocietyMember(societyMember)) {
-                alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setContentText("Society Member Created Successfully");
-                alert.setHeaderText("Success");
-                alert.showAndWait();
-            } else {
-                alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Society Member Created Successfully");
-                alert.setHeaderText("Success");
-                alert.showAndWait();
-            }
-        }
+            CodeAndMessage codeAndMessage = societyMemberService.createNewSocietyMember(societyMember);
+            switch(codeAndMessage.getErpCode()) {
+                case ALREADY_EXIST:
+                    alert=new Alert(AlertType.ERROR);
+                    alert.setContentText(codeAndMessage.getMessage());
+                    alert.setHeaderText("Exists...");
+                    alert.showAndWait();
+                    break;
+                case SUCCESSFULLY_CREATED:
 
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setContentText(codeAndMessage.getMessage());
+                    alert.setHeaderText("Success");
+                    Optional<ButtonType> clicked=alert.showAndWait();
+                    if(clicked.get() == ButtonType.OK)
+                        clear();
+                    break;
+                case SERVER_ERROR:
+                    alert=new Alert(AlertType.ERROR);
+                    alert.setContentText(codeAndMessage.getMessage());
+                    alert.setHeaderText("Error...");
+                    alert.showAndWait();
+                    break;
+                case DATABASE_COMM_FAILURE:
+                    alert=new Alert(AlertType.ERROR);
+                    alert.setContentText(codeAndMessage.getMessage());
+                    alert.setHeaderText("Database Comm fail...");
+                    alert.showAndWait();
+                    break;
+                case COMMUNICATION_FAIL:
+                    alert=new Alert(AlertType.ERROR);
+                    alert.setContentText(codeAndMessage.getMessage());
+                    alert.setHeaderText("Rest Comm fail...");
+                    alert.showAndWait();
+            }
+
+        }
     }
 
     private boolean validate(SocietyMember societyMember)
@@ -242,32 +288,12 @@ public class UserAddFormController {
             keyPairGenerator.initialize(2048);
             
             KeyPair keyPair=keyPairGenerator.genKeyPair();
-            Key privateKey = keyPair.getPrivate();
+            privateKey = keyPair.getPrivate();
             Key publicKey  = keyPair.getPublic();
             Base64.Encoder encoder = Base64.getEncoder();
             securityKey.setText(encoder.encodeToString(publicKey.getEncoded()));
-            System.out.println("Length="+encoder.encodeToString(publicKey.getEncoded()).length());
-            FileChooser fileChooser=new FileChooser();
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Key File","*.key"));
-            fileChooser.setTitle("Save The Key");
-            String initialFileName=houseType.getSelectionModel().getSelectedItem()+
-                                   houseNumber.getSelectionModel().getSelectedItem();
-            if (initialFileName != null && !initialFileName.trim().equals(""))
-                fileChooser.setInitialFileName(initialFileName + ".key");
-            else
-                fileChooser.setInitialFileName("default.key"); 
-            File keyFilePath=fileChooser.showSaveDialog(parent.getScene().getWindow());
-            if(keyFilePath != null)
-            {
-                FileOutputStream fos = new FileOutputStream(keyFilePath);
-                fos.write(privateKey.getEncoded());
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setContentText("Key file generated successfully. "
-                        + "Kindly circulate the file at "+keyFilePath.getAbsolutePath()+" for secure communication");
-                alert.setHeaderText("Key File Created");
-                alert.setTitle("Key File");
-                alert.showAndWait();
-            }
+            saveKeyFile();
+
         } catch (NoSuchAlgorithmException e) {
             logger.logError(this.getClass(), "RSA Algorithm Implementation Not Available", e);
         }
@@ -282,6 +308,37 @@ public class UserAddFormController {
             alert.showAndWait();
         }
         
+    }
+
+
+    private void saveKeyFile() throws IOException
+    {
+        FileChooser fileChooser=new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Key File","*.key"));
+        fileChooser.setTitle("Save The Key");
+        String initialFileName=houseType.getSelectionModel().getSelectedItem()+
+                houseNumber.getSelectionModel().getSelectedItem();
+        if (initialFileName != null && !initialFileName.trim().equals(""))
+            fileChooser.setInitialFileName(initialFileName + ".key");
+        else
+            fileChooser.setInitialFileName("default.key");
+        File keyFilePath=fileChooser.showSaveDialog(parent.getScene().getWindow());
+        if(keyFilePath != null)
+        {
+            FileOutputStream fos = new FileOutputStream(keyFilePath);
+            fos.write(privateKey.getEncoded());
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText("Key file generated successfully.\n "
+                    + "Kindly circulate the file at "+keyFilePath.getAbsolutePath()+" \nfor secure communication");
+            alert.setHeaderText("Key File Created");
+            alert.setTitle("Key File");
+            alert.showAndWait();
+            keyFileSaved=true;
+        }
+        else
+        {
+            keyFileSaved=false;
+        }
     }
 
     private SocietyMember buildSocietyMember() {
@@ -313,5 +370,25 @@ public class UserAddFormController {
         member.setAccountstatus(accountStatus.getSelectionModel().getSelectedItem());
         member.setPublickey(securityKey.getText());
         return member;
+    }
+
+
+    private void clear()
+    {
+        keyFileSaved=true;
+        privateKey=null;
+        firstName.setText("");
+        lastName.setText("");
+        userName.setText("");
+        passphrase.setText("");
+        securityKey.setText("");
+        mobileNumber.setText("");
+        houseNumber.getSelectionModel().clearSelection();
+        houseType.getSelectionModel().clearSelection();
+        accountStatus.getSelectionModel().clearSelection();
+        administrator.setSelected(false);
+        member.setSelected(true);
+        coord.setSelected(false);
+        secretary.setSelected(false);
     }
 }

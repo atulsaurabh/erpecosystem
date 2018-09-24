@@ -5,6 +5,8 @@
  */
 package com.dlinkddns.atulsaurabh.erpecosystem.service;
 
+import com.dlinkddns.atulsaurabh.erpecosystem.code.CodeAndMessage;
+import com.dlinkddns.atulsaurabh.erpecosystem.code.SystemCode;
 import com.dlinkddns.atulsaurabh.erpecosystem.entity.SocietyMember;
 import com.dlinkddns.atulsaurabh.erpecosystem.repository.SocietyMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,7 @@ public class SocietyMemberServiceImpl implements SocietyMemberService{
   private SocietyMemberRepository societyMemberRepository;
     
     @Override
-    public boolean createNewSocietyMember(SocietyMember societyMember) {
+    public CodeAndMessage createNewSocietyMember(SocietyMember societyMember) {
         return societyMemberRepository.registerMember(societyMember);
     }
     

@@ -5,6 +5,8 @@
  */
 package com.dlinkddns.atulsaurabh.erpecosystem.service;
 
+import com.dlinkddns.atulsaurabh.erpecosystem.code.CodeAndMessage;
+import com.dlinkddns.atulsaurabh.erpecosystem.code.SystemCode;
 import com.dlinkddns.atulsaurabh.erpecosystem.entity.SocietyMember;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +17,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface SocietyMemberService {
-    public boolean createNewSocietyMember(SocietyMember societyMember);
+    public CodeAndMessage createNewSocietyMember(SocietyMember societyMember);
 }

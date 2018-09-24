@@ -7,6 +7,7 @@ package com.dlinkddns.atulsaurabh.erpecosystem.repository;
 
 
 
+import com.dlinkddns.atulsaurabh.erpecosystem.code.CodeAndMessage;
 import com.dlinkddns.atulsaurabh.erpecosystem.entity.SocietyMember;
 import org.springframework.stereotype.Repository;
 
@@ -18,5 +19,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SocietyMemberRepository
 {
-   public boolean registerMember(SocietyMember member);
+   public CodeAndMessage registerMember(SocietyMember member);
 }
