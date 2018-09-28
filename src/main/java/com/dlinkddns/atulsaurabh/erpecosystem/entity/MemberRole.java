@@ -19,12 +19,14 @@ public class MemberRole implements Serializable
 
     private int roleid;
     private String rolename;
+    private int priority;
 
     public MemberRole() {
     }
 
-    public MemberRole(String rolename) {
+    public MemberRole(String rolename,int priority) {
         this.rolename = rolename;
+        this.priority = priority;
     }
     
     
@@ -45,6 +47,12 @@ public class MemberRole implements Serializable
     public void setRolename(String rolename) {
         this.rolename = rolename;
     }
-    
-    
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
 }

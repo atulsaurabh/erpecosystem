@@ -7,9 +7,11 @@ package com.dlinkddns.atulsaurabh.erpecosystem.controller;
 
 import com.dlinkddns.atulsaurabh.erpecosystem.code.CodeAndMessage;
 import com.dlinkddns.atulsaurabh.erpecosystem.entity.MemberRole;
+import com.dlinkddns.atulsaurabh.erpecosystem.entity.Priority;
 import com.dlinkddns.atulsaurabh.erpecosystem.entity.RoleInfo;
 import com.dlinkddns.atulsaurabh.erpecosystem.entity.SocietyMember;
 import com.dlinkddns.atulsaurabh.erpecosystem.service.SocietyMemberService;
+import com.dlinkddns.atulsaurabh.erpecosystem.util.PasswordEncoder;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
@@ -356,16 +358,20 @@ public class UserAddFormController {
             member.setHousenumber(hNumber);
         }
         member.setUsername(userName.getText());
-        member.setPassphrase(passphrase.getText());
+        member.setPassphrase(PasswordEncoder.encode(passphrase.getText()));
         member.setPublickey(securityKey.getText());
         if(administrator.isSelected())
-            member.getMemberRoles().add(new MemberRole(RoleInfo.ADMINISTRATOR));
+            member.getMemberRoles().add(new MemberRole(
+                    RoleInfo.ADMINISTRATOR,Priority.PRIORITY_LEVEL_ONE));
         if(secretary.isSelected())
-            member.getMemberRoles().add(new MemberRole(RoleInfo.SECRETARY));
+            member.getMemberRoles().add(new MemberRole(
+                    RoleInfo.SECRETARY,Priority.PRIORITY_LEVEL_TWO));
         else if(coord.isSelected())
-            member.getMemberRoles().add(new MemberRole(RoleInfo.COORDINATOR));
+            member.getMemberRoles().add(new MemberRole(
+                    RoleInfo.COORDINATOR,Priority.PRIORITY_LEVEL_THREE));
         else if(this.member.isSelected())
-            member.getMemberRoles().add(new MemberRole(RoleInfo.SOCIETY_MEMBER));
+            member.getMemberRoles().add(new MemberRole(
+                    RoleInfo.SOCIETY_MEMBER,Priority.PRIORITY_LEVEL_FOUR));
         member.setMobilenumber(mobileNumber.getText());
         member.setAccountstatus(accountStatus.getSelectionModel().getSelectedItem());
         member.setPublickey(securityKey.getText());

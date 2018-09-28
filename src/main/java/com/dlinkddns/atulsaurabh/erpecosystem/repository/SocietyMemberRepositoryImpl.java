@@ -3,32 +3,37 @@ package com.dlinkddns.atulsaurabh.erpecosystem.repository;
 
 import com.dlinkddns.atulsaurabh.erpecosystem.code.CodeAndMessage;
 import com.dlinkddns.atulsaurabh.erpecosystem.code.SystemCode;
+import com.dlinkddns.atulsaurabh.erpecosystem.dto.AuthResult;
+import com.dlinkddns.atulsaurabh.erpecosystem.dto.LoginDetail;
 import com.dlinkddns.atulsaurabh.erpecosystem.entity.SocietyMember;
 import com.dlinkddns.atulsaurabh.erpecosystem.util.ErpUtility;
+import com.dlinkddns.atulsaurabh.erpecosystem.util.PasswordEncoder;
 import net.dlinkddns.atulsaurabh.hasselfreelogger.api.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.logging.Level;
 
 
 @Repository
 public class SocietyMemberRepositoryImpl implements SocietyMemberRepository {
-    @Autowired
-    private ErpUtility erpUtility;
+
     @Autowired
     private Logger logger;
+    @Autowired
+    private ErpUtility erpUtility;
+
 
     @Override
     public CodeAndMessage registerMember(SocietyMember member)
     {
         CodeAndMessage codeAndMessage = new CodeAndMessage();
         try {
-            RestTemplate template = new RestTemplate();
-            template.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
             String url = erpUtility.resolvKey("rest_base_url")+erpUtility.resolvKey("rest_member_add");
+            RestTemplate template=RestClient.restTemplate();
             ResponseEntity<String> memberResponseEntity = template.postForEntity(url,member,String.class);
 
             codeAndMessage.setMessage(memberResponseEntity.getBody());
@@ -51,5 +56,27 @@ public class SocietyMemberRepositoryImpl implements SocietyMemberRepository {
            codeAndMessage.setErpCode(SystemCode.COMMUNICATION_FAIL);
            return codeAndMessage;
         }
+    }
+
+
+    @Override
+    public AuthResult memberLogin(String username, String password)
+    {
+        try {
+            RestTemplate restTemplate = RestClient.restTemplate();
+            String url = erpUtility.resolvKey("rest_base_url")+erpUtility.resolvKey("rest_member_login");
+            LoginDetail detail = new LoginDetail();
+            detail.setUsername(username);
+            detail.setPassword(PasswordEncoder.encode(password));
+            ResponseEntity<AuthResult> authResultResponseEntity = restTemplate.postForEntity(url,detail,AuthResult.class);
+            return authResultResponseEntity.getBody();
+        }
+        catch (Exception exception)
+        {
+            java.util.logging.Logger.getLogger(getClass().getName()).log(Level.SEVERE,exception.getMessage(),exception);
+        }
+
+
+        return null;
     }
 }
